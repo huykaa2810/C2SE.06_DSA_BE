@@ -10,7 +10,6 @@ class Post extends Model
     use HasFactory;
     protected $table = 'posts';
     protected $filable = [
-        'id',
         'category_id',
         'member_id',
         'title',
