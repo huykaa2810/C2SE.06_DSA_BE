@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PhotoLibraryRequest;
 use App\Models\PhotoLibrary;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class PhotoLibraryController extends Controller
             'photo_librarys'  =>  $data
         ]);
     }
-    public function store(Request $request)
+    public function store(PhotoLibraryRequest $request)
     {
         $data   =   $request->all();
         PhotoLibrary::create($data);

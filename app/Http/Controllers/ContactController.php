@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ContactController extends Controller
             'contacts'  =>  $data
         ]);
     }
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
         $data   =   $request->all();
         Contact::create($data);

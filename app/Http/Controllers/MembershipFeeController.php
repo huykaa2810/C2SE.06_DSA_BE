@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MembershipFeeRequest;
 use App\Models\MembershipFee;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class MembershipFeeController extends Controller
             'membershipfees'  =>  $data
         ]);
     }
-    public function store(Request $request)
+    public function store(MembershipFeeRequest $request)
     {
         $data   =   $request->all();
         MembershipFee::create($data);

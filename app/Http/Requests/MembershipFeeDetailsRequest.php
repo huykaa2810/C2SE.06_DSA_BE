@@ -23,10 +23,10 @@ class MembershipFeeDetailsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount_id' => 'required|exists:amounts,id', // Kiểm tra xem ID số tiền có tồn tại trong bảng amounts
-            'member_id' => 'required|exists:members,id', // Kiểm tra xem ID thành viên có tồn tại trong bảng members
-            'status' => 'required|in:active,inactive,pending', // Cho phép các giá trị cụ thể
-            'amount' => 'required|numeric|min:0', // Số tiền phải là số và lớn hơn hoặc bằng 0
+            'amount_id' => 'required|exists:amounts,id',
+            'member_id' => 'required|exists:members,id',
+            'status' => 'required|in:active,inactive,pending',
+            'amount' => 'required|numeric|min:0',
 
         ];
     }

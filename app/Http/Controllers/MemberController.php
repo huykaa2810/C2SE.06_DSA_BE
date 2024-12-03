@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MemberRequest;
 use App\Models\Member;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class MemberController extends Controller
             'members'  =>  $data
         ]);
     }
-    public function store(Request $request)
+    public function store(MemberRequest $request)
     {
         $data   =   $request->all();
         Member::create($data);

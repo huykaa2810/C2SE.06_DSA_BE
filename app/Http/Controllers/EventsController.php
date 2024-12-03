@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventsRequest;
 use App\Models\Events;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class EventsController extends Controller
             'events'  =>  $data
         ]);
     }
-    public function store(Request $request)
+    public function store(EventsRequest $request)
     {
         $data   =   $request->all();
         Events::create($data);

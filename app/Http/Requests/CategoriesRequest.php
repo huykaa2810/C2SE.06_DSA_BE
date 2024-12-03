@@ -22,9 +22,9 @@ class CategoriesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_name' => 'required|string|max:255|unique:categories,name', // Tên danh mục là bắt buộc, phải là chuỗi và duy nhất trong bảng categories
-            'parent_category_id' => 'nullable|exists:categories,id', // ID danh mục cha có thể để trống nhưng nếu có thì phải tồn tại trong bảng categories
-            'is_open' => 'required|boolean', // Trạng thái mở là bắt buộc và phải là đúng hoặc sai
+            'category_name' => 'required|string|max:255|unique:categories,category_name',
+            'parent_category_id' => 'required',
+            'is_open' => 'required|boolean',
         ];
     }
     public function messages()
@@ -36,7 +36,7 @@ class CategoriesRequest extends FormRequest
             'category_name.unique' => 'Tên danh mục đã tồn tại.',
 
             'parent_category_id.nullable' => 'ID danh mục cha có thể để trống.',
-            'parent_category_id.exists' => 'ID danh mục cha không tồn tại.',
+
 
             'is_open.required' => 'Trạng thái mở là bắt buộc.',
             'is_open.boolean' => 'Trạng thái mở phải là đúng hoặc sai.',

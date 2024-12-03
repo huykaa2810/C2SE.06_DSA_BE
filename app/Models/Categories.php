@@ -16,3 +16,5 @@ class Categories extends Model
         'is_open',
     ];
 }
+
+

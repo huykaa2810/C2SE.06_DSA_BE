@@ -22,11 +22,11 @@ class ContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255', // Tiêu đề là bắt buộc, phải là chuỗi và không vượt quá 255 ký tự
-            'content' => 'required|string|min:10', // Nội dung là bắt buộc, phải là chuỗi và tối thiểu 10 ký tự
-            'sender_name' => 'required|string|max:255', // Tên người gửi là bắt buộc, phải là chuỗi và không vượt quá 255 ký tự
-            'email_sender' => 'required|email', // Email của người gửi là bắt buộc và phải có định dạng hợp lệ
-            'status' => 'required|in:active,inactive,pending', // Trạng thái là bắt buộc và phải là một trong các giá trị cụ thể
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|min:10',
+            'sender_name' => 'required|string|max:255',
+            'email_sender' => 'required|email',
+            'status' => 'required|in:active,inactive,pending',
         ];
     }
     public function messages()

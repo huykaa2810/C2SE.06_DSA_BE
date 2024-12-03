@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DocumentRequest;
 use App\Models\Document;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class DocumentController extends Controller
             'documents'  =>  $data
         ]);
     }
-    public function store(Request $request)
+    public function store(DocumentRequest $request)
     {
         $data   =   $request->all();
         Document::create($data);

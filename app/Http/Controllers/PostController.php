@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class PostController extends Controller
             'posts'  =>  $data
         ]);
     }
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $data   =   $request->all();
         Post::create($data);

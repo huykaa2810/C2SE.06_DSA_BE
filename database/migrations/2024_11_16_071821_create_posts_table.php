@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('category_id');
             $table->integer('member_id');
             $table->string('title');
-            $table->text('content');
+            $table->longText('content');
             $table->string('image');
             $table->boolean('is_open');
             $table->timestamps();

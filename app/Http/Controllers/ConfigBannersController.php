@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConfigBannersRequest;
 use App\Models\ConfigBanners;
 use Illuminate\Http\Request;
 
@@ -15,14 +16,14 @@ class ConfigBannersController extends Controller
             'configbanners'  =>  $data
         ]);
     }
-    public function store(Request $request)
+    public function store(ConfigBannersRequest $request)
     {
         $data   =   $request->all();
         ConfigBanners::create($data);
 
         return response()->json([
             'status'    =>  true,
-            'message'   =>  'Đã tạo mới thể banner thành công!'
+            'message'   =>  'Đã tạo mới banner thành công!'
         ]);
     }
     public function destroy($id)

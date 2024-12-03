@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PhotoLibraryRequest extends FormRequest
+class DocumentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,23 +22,23 @@ class PhotoLibraryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => 'required|url',
             'title' => 'required|string|max:255',
-            'is_open' => 'required|boolean',
+            'url_file' => 'required|url',
+            'member_id' => 'required|exists:members,id', 
         ];
     }
     public function messages()
     {
         return [
-            'url.required' => 'URL là bắt buộc.',
-            'url.url' => 'URL phải có định dạng hợp lệ.',
-
             'title.required' => 'Tiêu đề là bắt buộc.',
             'title.string' => 'Tiêu đề phải là chuỗi ký tự.',
             'title.max' => 'Tiêu đề không được vượt quá 255 ký tự.',
 
-            'is_open.required' => 'Trạng thái mở là bắt buộc.',
-            'is_open.boolean' => 'Trạng thái mở phải là true hoặc false.',
+            'url_file.required' => 'URL tệp là bắt buộc.',
+            'url_file.url' => 'URL tệp phải có định dạng hợp lệ.',
+
+            'member_id.required' => 'ID thành viên là bắt buộc.',
+            'member_id.exists' => 'ID thành viên không tồn tại.',
         ];
     }
 }

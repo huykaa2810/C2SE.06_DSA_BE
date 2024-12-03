@@ -23,7 +23,7 @@ class MemberRequest extends FormRequest
     {
         return [
             'username'                  => 'required|min:5|alpha_num|unique:users,username',
-            'password'                  => 'required|min:8|regex:/[0-9]/', // Tối thiểu 8 ký tự và có ít nhất 1 số
+            'password'                  => 'required|min:8|regex:/[0-9]/',
             'company_email'             => 'required|email|unique:companies,email',
             'registrant_name'           => 'required|string|max:255',
             'subscriber_email'          => 'required|email|unique:subscribers,email',
@@ -31,7 +31,7 @@ class MemberRequest extends FormRequest
             'registered_phone_number'   => 'required|numeric',
             'address'                   => 'required|string|max:255',
             'position'                  => 'required|string|max:255',
-            'website'                   => 'required|url', // Kiểm tra định dạng URL
+            'website'                   => 'required|url',
             'member_introduction'       => 'required|min:5',
             'is_active'                 => 'required|boolean',
             'is_open'                   => 'required|boolean',

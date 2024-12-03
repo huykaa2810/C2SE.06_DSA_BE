@@ -22,15 +22,15 @@ class CustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_name' => 'required|string|alpha_num|unique:users,user_name|max:255', // Tên người dùng là bắt buộc, phải là chuỗi, duy nhất và không vượt quá 255 ký tự
-            'password' => 'required|string|min:8|regex:/[0-9]/', // Mật khẩu là bắt buộc, tối thiểu 8 ký tự và có ít nhất 1 số
-            'registrant_name' => 'required|string|max:255', // Tên người đăng ký là bắt buộc, phải là chuỗi và không vượt quá 255 ký tự
-            'subscriber_email' => 'required|email|unique:subscribers,email', // Email người đăng ký là bắt buộc, phải có định dạng hợp lệ và duy nhất
-            'phone_number' => 'required|numeric|min:10000', // Số điện thoại là bắt buộc, phải là số và có ít nhất 5 chữ số
-            'address' => 'required|string|max:255', // Địa chỉ là bắt buộc, phải là chuỗi và không vượt quá 255 ký tự
-            'is_active' => 'required|boolean', // Trạng thái hoạt động là bắt buộc và phải là đúng hoặc sai
-            'is_open' => 'required|boolean', // Trạng thái mở là bắt buộc và phải là đúng hoặc sai
-            'is_member' => 'required|boolean', // Trạng thái thành viên là bắt buộc và phải là đúng hoặc sai
+            'user_name' => 'required|string|alpha_num|unique:users,user_name|max:255',
+            'password' => 'required|string|min:8|regex:/[0-9]/',
+            'registrant_name' => 'required|string|max:255',
+            'subscriber_email' => 'required|email|unique:subscribers,email',
+            'phone_number' => 'required|numeric|min:10000',
+            'address' => 'required|string|max:255',
+            'is_active' => 'required|boolean',
+            'is_open' => 'required|boolean',
+            'is_member' => 'required|boolean', 
         ];
     }
     public function messages()

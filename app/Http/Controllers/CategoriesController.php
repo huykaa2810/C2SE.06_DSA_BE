@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoriesRequest;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class CategoriesController extends Controller
             'categories'  =>  $data
         ]);
     }
-    public function store(Request $request)
+    public function store(CategoriesRequest $request)
     {
         $data   =   $request->all();
         Categories::create($data);
