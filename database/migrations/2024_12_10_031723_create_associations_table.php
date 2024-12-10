@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('members', function (Blueprint $table) {
+        Schema::create('associations', function (Blueprint $table) {
             $table->id();
-
             $table->string('username')->unique();;
             $table->string('password');
             $table->string('company_email');
@@ -22,14 +21,13 @@ return new class extends Migration
             $table->string('phone number');
             $table->string('registered_phone_number');
             $table->string('address');
-            $table->string('position');
+
             $table->string('website');
-            $table->text('member_introduction');
+
             $table->boolean('is_active');
             $table->boolean('is_open');
             $table->string('company	_name');
             $table->boolean('is_master');
-
             $table->timestamps();
         });
     }
@@ -39,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('members');
+        Schema::dropIfExists('associations');
     }
 };

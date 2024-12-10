@@ -5,20 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Association extends Model
 {
     use HasFactory;
-    protected $table = 'users';
+    protected $table = 'associations';
+
     protected $fillable = [
 
-        'user_name',
+        'username',
         'password',
+        'company_email',
         'registrant_name',
         'subscriber_email',
         'phone_number',
+        'registered_phone_number',
         'address',
+
+        'website',
+
         'is_active',
         'is_open',
-        'is_member',
+        'company_name',
+        'is_master',
     ];
 }

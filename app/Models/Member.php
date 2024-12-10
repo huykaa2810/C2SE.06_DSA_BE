@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     use HasFactory;
-    protected $table ='members';
+    protected $table = 'members';
 
     protected $fillable = [
 
@@ -20,9 +20,9 @@ class Member extends Model
         'phone_number',
         'registered_phone_number',
         'address',
-        'position',
+
         'website',
-        'member_introduction',
+
         'is_active',
         'is_open',
         'company_name',

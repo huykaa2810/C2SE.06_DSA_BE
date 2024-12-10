@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AssociationController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ConfigBannersController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MemberController;
@@ -10,6 +12,7 @@ use App\Http\Controllers\MembershipFeeController;
 use App\Http\Controllers\MembershipFeeDetailsController;
 use App\Http\Controllers\PhotoLibraryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,10 +51,10 @@ Route::post('/Post/create', [PostController::class, 'store']);
 Route::delete('/Post/delete{id}', [PostController::class, 'destroy']);
 Route::put('/Post/update', [PostController::class, 'update']);
 
-Route::get('/Member/data', [MemberController::class, 'getData']);
-Route::post('/Member/create', [MemberController::class, 'store']);
-Route::delete('/Member/delete{id}', [MemberController::class, 'destroy']);
-Route::put('/Member/update', [MemberController::class, 'update']);
+Route::get('/Association/data', [AssociationController::class, 'getData']);
+Route::post('/Association/create', [AssociationController::class, 'store']);
+Route::delete('/Association/delete{id}', [AssociationController::class, 'destroy']);
+Route::put('/Association/update', [AssociationController::class, 'update']);
 
 Route::get('/MembershipFee/data', [MembershipFeeController::class, 'getData']);
 Route::post('/MembershipFee/create', [MembershipFeeController::class, 'store']);
@@ -68,3 +71,15 @@ Route::get('/Contact/data', [ContactController::class, 'getData']);
 Route::post('/Contact/create', [ContactController::class, 'store']);
 Route::delete('/Contact/delete{id}', [ContactController::class, 'destroy']);
 Route::put('/Contact/update', [ContactController::class, 'update']);
+
+Route::get('/member/data', [MemberController::class, 'getData']);
+Route::post('/member/create', [MemberController::class, 'store']);
+Route::delete('/member/delete{id}', [MemberController::class, 'destroy']);
+Route::put('/member/update', [MemberController::class, 'update']);
+
+
+// Route::post('/dang-ky', [KhachHangController::class, 'dangKy']);
+// Route::post('/admin/dang-nhap', [NhanVienController::class, 'dangNhap']);
+// Route::post('/khach-hang/dang-nhap', [KhachHangController::class, 'dangNhap']);
+// Route::post("/kiem-tra-token-admin", [NhanVienController::class, "kiemTraToken"]);
+// Route::get("/kiem-tra-token-khach-hang", [KhachHangController::class, "kiemTraToken"]);
