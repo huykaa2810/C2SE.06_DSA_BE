@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('photo_libraries', function (Blueprint $table) {
             $table->id();
 
-            $table->string('url');
+            $table->string('image');
             $table->string('title');
             $table->boolean('is_open');
             $table->timestamps();

@@ -13,16 +13,14 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_name');
+            $table->string('user_name');
             $table->string('password');
             $table->string('avatar');
             $table->string('full_name');
             $table->string('subscriber_email');
             $table->string('phone_number');
             $table->string('address');
-            $table->boolean('is_active');
             $table->boolean('is_open');
-            $table->boolean('is_member');
             $table->timestamps();
         });
     }

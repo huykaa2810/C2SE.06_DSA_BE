@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('membership_fees', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('fee_type');
             $table->decimal('amount');
             $table->boolean('is_open');

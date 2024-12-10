@@ -12,7 +12,7 @@ class Association extends Model
 
     protected $fillable = [
 
-        'username',
+        'user_name',
         'password',
         'company_email',
         'registrant_name',

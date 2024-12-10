@@ -22,7 +22,7 @@ class AssociationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username'                  => 'required|min:5|alpha_num|unique:users,username',
+            'user_name'                  => 'required|min:5|alpha_num|unique:users,username',
             'password'                  => 'required|min:8|regex:/[0-9]/',
             'company_email'             => 'required|email|unique:companies,email',
             'registrant_name'           => 'required|string|max:255',
@@ -43,10 +43,10 @@ class AssociationRequest extends FormRequest
     public function messages()
     {
         return [
-            'username.required' => 'Tên người dùng là bắt buộc.',
-            'username.min' => 'Tên người dùng phải có ít nhất 5 ký tự.',
-            'username.alpha_num' => 'Tên người dùng chỉ được chứa chữ cái và số.',
-            'username.unique' => 'Tên người dùng đã tồn tại.',
+            'user_name.required' => 'Tên người dùng là bắt buộc.',
+            'user_name.min' => 'Tên người dùng phải có ít nhất 5 ký tự.',
+            'user_name.alpha_num' => 'Tên người dùng chỉ được chứa chữ cái và số.',
+            'user_name.unique' => 'Tên người dùng đã tồn tại.',
 
             'password.required' => 'Mật khẩu là bắt buộc.',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',

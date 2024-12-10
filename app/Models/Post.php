@@ -18,3 +18,4 @@ class Post extends Model
         'is_open',
     ];
 }
+

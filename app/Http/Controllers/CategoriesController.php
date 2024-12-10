@@ -14,8 +14,47 @@ class CategoriesController extends Controller
 
         return response()->json([
             'categories'  =>  $data
+
+        ]);
+
+
+    }
+
+    //trả về danh mục có id tương ứng
+    public function getDataById($id)
+    {
+        $data = Categories::find($id);
+
+        if (!$data) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+
+        return response()->json([
+            'category' => $data
         ]);
     }
+
+
+    // lấy danh mục con bằng ID của danh mục cha
+        public function getChildCategories($parentId)
+        {
+            // Lấy tất cả danh mục con dựa trên ID của danh mục cha
+            $childCategories = Categories::where('parent_category_id', $parentId)
+                ->select('id', 'name') // Giả sử tên trường là 'name'
+                ->get();
+
+            if ($childCategories->isEmpty()) {
+                return response()->json(['message' => 'Không tìm thấy danh mục con'], 404);
+            }
+
+            return response()->json([
+                'parent_id' => $parentId,
+                'child_categories' => $childCategories
+            ]);
+        }
+
+
+
     public function store(CategoriesRequest $request)
     {
         $data   =   $request->all();

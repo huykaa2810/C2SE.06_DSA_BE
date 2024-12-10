@@ -26,6 +26,23 @@ class ConfigBannersController extends Controller
             'message'   =>  'Đã tạo mới banner thành công!'
         ]);
     }
+
+    public function getTopBanners()
+    {
+        // Lấy 3 banner có mức độ ưu tiên 1, 2, và 3
+        $banners = ConfigBanners::where('is_open', 1)
+            ->whereIn('priority', [1, 2, 3]) // Lọc theo mức độ ưu tiên
+            ->orderBy('priority', 'asc') // Sắp xếp theo mức độ ưu tiên từ thấp đến cao
+            ->take(3) // Lấy tối đa 3 banner
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'data' => $banners,
+            'message' => 'Đã lấy banner thành công!'
+        ]);
+    }
+
     public function destroy($id)
     {
         ConfigBanners::find($id)->delete();

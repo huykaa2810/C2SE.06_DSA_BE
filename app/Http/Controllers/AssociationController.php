@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AssociationRequest;
 use App\Models\Association;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 
 class AssociationController extends Controller
@@ -49,5 +50,25 @@ class AssociationController extends Controller
             'status'    =>  true,
             'message'   =>  'Đã cập nhật thành viên thành công!'
         ]);
+    }
+    public function dangNhap(Request $request)
+    {
+        $check  = Auth::guard('association')->attempt(['email' => $request->email, 'password' =>  $request->password]);
+
+        if ($check) {
+            $user =  Auth::guard('association')->user();
+            return response()->json([
+                'status'        =>  true,
+                'token'         => $user->createToken('token')->plainTextToken,
+                'ho_ten_admin'  => $user->ho_va_ten,
+                'avatar_admin'  => $user->avatar,
+                'message'       =>  'Đã đăng nhập thành công'
+            ]);
+        } else {
+            return response()->json([
+                'status'    =>  false,
+                'message'   =>  'Tài Khoản hoặc mật khẩu không đúng'
+            ]);
+        }
     }
 }

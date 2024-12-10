@@ -11,7 +11,7 @@ class PhotoLibrary extends Model
     protected $table = 'photo_librarys';
 
     protected $fillable = [
-        'url',
+        'image',
         'title',
         'is_open',
     ];

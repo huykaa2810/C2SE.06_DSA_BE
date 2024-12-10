@@ -22,15 +22,18 @@ class ConfigBannersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => 'required|url',
+            'image' => 'required',
+            'priority' => 'required',
+
             'is_open' => 'required|boolean',
         ];
     }
     public function messages()
     {
         return [
-            'url.required' => 'URL là bắt buộc.',
-            'url.url' => 'URL phải có định dạng hợp lệ.',
+            'image.required' => 'bắt buộc nhập ảnh.',
+            // 'url.url' => 'URL phải có định dạng hợp lệ.',
+            'priority.required' => 'Phải nhập số.',
 
             'is_open.required' => 'Trạng thái mở là bắt buộc.',
             'is_open.boolean' => 'Trạng thái mở phải là đúng hoặc sai.',

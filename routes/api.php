@@ -22,14 +22,18 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/Categories/data', [CategoriesController::class, 'getData']);
+Route::get('/categories/{id}', [CategoriesController::class, 'getDataById']);
 Route::post('/Categories/create', [CategoriesController::class, 'store']);
 Route::delete('/Categories/delete{id}', [CategoriesController::class, 'destroy']);
 Route::put('/Categories/update', [CategoriesController::class, 'update']);
+Route::get('/categories/children/{parent_category_id}', [CategoriesController::class, 'getChildCategories']);
 
 Route::get('/ConfigBanners/data', [ConfigBannersController::class, 'getData']);
+Route::get('/banners/top', [ConfigBannersController::class, 'getTopBanners']);
 Route::post('/ConfigBanners/create', [ConfigBannersController::class, 'store']);
 Route::delete('/ConfigBanners/delete{id}', [ConfigBannersController::class, 'destroy']);
 Route::put('/ConfigBanners/update', [ConfigBannersController::class, 'update']);
+
 
 Route::get('/Document/data', [DocumentController::class, 'getData']);
 Route::post('/Document/create', [DocumentController::class, 'store']);
@@ -78,8 +82,8 @@ Route::delete('/member/delete{id}', [MemberController::class, 'destroy']);
 Route::put('/member/update', [MemberController::class, 'update']);
 
 
-// Route::post('/dang-ky', [KhachHangController::class, 'dangKy']);
-// Route::post('/admin/dang-nhap', [NhanVienController::class, 'dangNhap']);
-// Route::post('/khach-hang/dang-nhap', [KhachHangController::class, 'dangNhap']);
-// Route::post("/kiem-tra-token-admin", [NhanVienController::class, "kiemTraToken"]);
-// Route::get("/kiem-tra-token-khach-hang", [KhachHangController::class, "kiemTraToken"]);
+Route::post('/dang-ky', [MemberController::class, 'dangKy']);
+Route::post('/admin/dang-nhap', [AssociationController::class, 'dangNhap']);
+Route::post('/member/dang-nhap', [MemberController::class, 'dangNhap']);
+Route::post("/kiem-tra-token-admin", [AssociationController::class, "kiemTraToken"]);
+Route::get("/kiem-tra-token-member", [MemberController::class, "kiemTraToken"]);

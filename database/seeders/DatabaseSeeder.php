@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ConfigBanners;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,9 +16,19 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            CategoriesSeeder::class,
+            MemberSeeder::class,
+            AssociationSeeder::class,
+            ConfigBannersSeeder::class,
+            DocumentSeeder::class,
+            EventsSeeder::class,
+            MembershipFeeSeeder::class,
+            MembershipFeeDetailsSeeder::class,
+            PhotoLibrarySeeder::class,
+            PostSeeder::class,
+            ContactSeeder::class,
+
         ]);
     }
 }

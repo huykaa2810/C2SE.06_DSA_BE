@@ -22,7 +22,7 @@ class PhotoLibraryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'url' => 'required|url',
+            'image' => 'required',
             'title' => 'required|string|max:255',
             'is_open' => 'required|boolean',
         ];
@@ -30,8 +30,8 @@ class PhotoLibraryRequest extends FormRequest
     public function messages()
     {
         return [
-            'url.required' => 'URL là bắt buộc.',
-            'url.url' => 'URL phải có định dạng hợp lệ.',
+            'image.required' => 'bắt buộc nhập.',
+            // 'image.url' => 'URL phải có định dạng hợp lệ.',
 
             'title.required' => 'Tiêu đề là bắt buộc.',
             'title.string' => 'Tiêu đề phải là chuỗi ký tự.',

@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('associations', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();;
+            $table->string('user_name')->unique();;
             $table->string('password');
             $table->string('company_email');
             $table->string('registrant_name');
             $table->string('subscriber_email');
-            $table->string('phone number');
+            $table->string('phone_number');
             $table->string('registered_phone_number');
             $table->string('address');
 
@@ -26,7 +26,7 @@ return new class extends Migration
 
             $table->boolean('is_active');
             $table->boolean('is_open');
-            $table->string('company	_name');
+            $table->string('company_name');
             $table->boolean('is_master');
             $table->timestamps();
         });
