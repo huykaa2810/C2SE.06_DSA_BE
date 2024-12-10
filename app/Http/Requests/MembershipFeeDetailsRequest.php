@@ -26,7 +26,7 @@ class MembershipFeeDetailsRequest extends FormRequest
             'amount_id' => 'required|exists:amounts,id',
             'member_id' => 'required|exists:members,id',
             'status' => 'required|in:active,inactive,pending',
-            'amount' => 'required|numeric|min:0',
+            'amount' => 'required',
 
         ];
     }
@@ -43,8 +43,8 @@ class MembershipFeeDetailsRequest extends FormRequest
             'status.in' => 'Trạng thái phải là một trong các giá trị: active, inactive, pending.',
 
             'amount.required' => 'Số tiền là bắt buộc.',
-            'amount.numeric' => 'Số tiền phải là số.',
-            'amount.min' => 'Số tiền phải lớn hơn hoặc bằng 0.',
+            // 'amount.numeric' => 'Số tiền phải là số.',
+            // 'amount.min' => 'Số tiền phải lớn hơn hoặc bằng 0.',
         ];
     }
 }

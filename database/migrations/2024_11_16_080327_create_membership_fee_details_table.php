@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('amount_id');
             $table->integer('member_id');
             $table->string('status');
-            $table->decimal('amount');
+            $table->integer('amount');
             $table->timestamps();
         });
     }

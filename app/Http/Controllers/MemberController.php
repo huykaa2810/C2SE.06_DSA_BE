@@ -6,6 +6,8 @@ use App\Http\Requests\MemberRequest;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class MemberController extends Controller
@@ -50,7 +52,7 @@ class MemberController extends Controller
     public function dangKy(Request $request)
     {
         $check_mail = Member::where('email', $request->email)->first();
-        if($check_mail) {
+        if ($check_mail) {
             return response()->json([
                 'status' => false,
                 'message' => "Email đã tồn tại trong hệ thống!"
@@ -68,6 +70,37 @@ class MemberController extends Controller
                 'message' => "Đăng kí tài khoản thành công!"
             ]);
         }
-
+    }
+    public function dangNhap(Request $request)
+    {
+        $check  = Auth::guard('member')->attempt(['user_name' => $request->user_name, 'password' =>  $request->password]);
+        if ($check) {
+            $user =  Auth::guard('member')->user();
+            if ($user->is_block) {
+                return response()->json([
+                    'status'    =>  false,
+                    'message'   =>  'Tài khoản của bạn đã bị khoá!'
+                ]);
+            }
+            if ($user->is_active) {
+                return response()->json([
+                    'status'    =>  true,
+                    'token'     => $user->createToken('token')->plainTextToken,
+                    'user_name'    => $user->user_name,
+                    'message'   =>  'Đã đăng nhập thành công'
+                ]);
+            } else {
+                Auth::guard('member')->logout();
+                return response()->json([
+                    'status'    =>  false,
+                    'message'   =>  'Vui lòng kiểm tra email!'
+                ]);
+            }
+        } else {
+            return response()->json([
+                'status'    =>  false,
+                'message'   =>  'Tài Khoản hoặc mật khẩu không đúng'
+            ]);
+        }
     }
 }

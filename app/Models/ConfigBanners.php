@@ -13,7 +13,8 @@ class ConfigBanners extends Model
     protected $fillable = [
 
         'image',
+        'priority',
         'is_open',
-        'priority', 
+
     ];
 }

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AssociationRequest;
 use App\Models\Association;
-use Illuminate\Container\Attributes\Auth;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class AssociationController extends Controller
 {
@@ -53,15 +56,15 @@ class AssociationController extends Controller
     }
     public function dangNhap(Request $request)
     {
-        $check  = Auth::guard('association')->attempt(['email' => $request->email, 'password' =>  $request->password]);
+        $check  = Auth::guard('association')->attempt(['user_name' => $request->user_name, 'password' =>  $request->password]);
 
         if ($check) {
             $user =  Auth::guard('association')->user();
             return response()->json([
                 'status'        =>  true,
                 'token'         => $user->createToken('token')->plainTextToken,
-                'ho_ten_admin'  => $user->ho_va_ten,
-                'avatar_admin'  => $user->avatar,
+                'user_name'  => $user->user_name,
+                'avatar_user'  => $user->avatar,
                 'message'       =>  'Đã đăng nhập thành công'
             ]);
         } else {

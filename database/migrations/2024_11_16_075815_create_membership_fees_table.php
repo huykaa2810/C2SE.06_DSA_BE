@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('fee_type');
-            $table->decimal('amount');
+            $table->integer('amount');
             $table->boolean('is_open');
             $table->timestamps();
         });

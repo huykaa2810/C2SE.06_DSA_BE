@@ -85,5 +85,5 @@ Route::put('/member/update', [MemberController::class, 'update']);
 Route::post('/dang-ky', [MemberController::class, 'dangKy']);
 Route::post('/admin/dang-nhap', [AssociationController::class, 'dangNhap']);
 Route::post('/member/dang-nhap', [MemberController::class, 'dangNhap']);
-Route::post("/kiem-tra-token-admin", [AssociationController::class, "kiemTraToken"]);
-Route::get("/kiem-tra-token-member", [MemberController::class, "kiemTraToken"]);
+// Route::post("/kiem-tra-token-admin", [AssociationController::class, "kiemTraToken"]);
+// Route::get("/kiem-tra-token-member", [MemberController::class, "kiemTraToken"]);

@@ -24,7 +24,6 @@ class ConfigBannersRequest extends FormRequest
         return [
             'image' => 'required',
             'priority' => 'required',
-
             'is_open' => 'required|boolean',
         ];
     }

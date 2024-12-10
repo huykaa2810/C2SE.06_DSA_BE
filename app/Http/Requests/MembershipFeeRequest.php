@@ -23,7 +23,7 @@ class MembershipFeeRequest extends FormRequest
     {
         return [
             'fee_type'  => 'required|string|in:fixed,variable',
-            'amount'    => 'required|numeric|min:0',
+            'amount'    => 'required',
             'is_open'   => 'required|boolean',
         ];
     }
@@ -35,8 +35,8 @@ class MembershipFeeRequest extends FormRequest
             'fee_type.in' => 'Loại phí phải là một trong những giá trị: fixed, variable.',
 
             'amount.required' => 'Số tiền là bắt buộc.',
-            'amount.numeric' => 'Số tiền phải là số.',
-            'amount.min' => 'Số tiền phải lớn hơn hoặc bằng 0.',
+            // 'amount.numeric' => 'Số tiền phải là số.',
+            // 'amount.min' => 'Số tiền phải lớn hơn hoặc bằng 0.',
 
             'is_open.required' => 'Trạng thái mở là bắt buộc.',
             'is_open.boolean' => 'Trạng thái mở phải là đúng hoặc sai.',
