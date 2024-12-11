@@ -17,4 +17,6 @@ class ConfigBanners extends Model
         'is_open',
 
     ];
+
+    
 }

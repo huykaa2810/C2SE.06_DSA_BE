@@ -22,7 +22,7 @@ class Association extends Model
         'address',
 
         'website',
-
+        'avatar',
         'is_active',
         'is_open',
         'company_name',

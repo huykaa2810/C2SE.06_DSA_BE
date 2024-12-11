@@ -21,4 +21,10 @@ class Member extends Model
         'address',
         'is_open'
     ];
+
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'member_id', 'id'); // member_id là khóa ngoại của posts
+    }
 }

@@ -32,6 +32,7 @@ class AssociationRequest extends FormRequest
             'address'                   => 'required|string|max:255',
 
             'website'                   => 'required|url',
+            'avatar'                    => 'required',
 
             'is_active'                 => 'required|boolean',
             'is_open'                   => 'required|boolean',

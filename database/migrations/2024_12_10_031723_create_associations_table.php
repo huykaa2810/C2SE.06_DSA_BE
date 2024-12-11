@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('address');
 
             $table->string('website');
-
+            $table->string('avatar');
             $table->boolean('is_active');
             $table->boolean('is_open');
             $table->string('company_name');

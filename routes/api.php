@@ -27,6 +27,7 @@ Route::post('/Categories/create', [CategoriesController::class, 'store']);
 Route::delete('/Categories/delete{id}', [CategoriesController::class, 'destroy']);
 Route::put('/Categories/update', [CategoriesController::class, 'update']);
 Route::get('/categories/children/{parent_category_id}', [CategoriesController::class, 'getChildCategories']);
+Route::get('/categories/{id}/posts', [CategoriesController::class, 'getPostsByCategory']);
 
 Route::get('/ConfigBanners/data', [ConfigBannersController::class, 'getData']);
 Route::get('/banners/top', [ConfigBannersController::class, 'getTopBanners']);
@@ -54,6 +55,8 @@ Route::get('/Post/data', [PostController::class, 'getData']);
 Route::post('/Post/create', [PostController::class, 'store']);
 Route::delete('/Post/delete{id}', [PostController::class, 'destroy']);
 Route::put('/Post/update', [PostController::class, 'update']);
+Route::get('/posts/latest', [PostController::class, 'latest']);
+Route::get('/posts/search', [PostController::class, 'search']);
 
 Route::get('/Association/data', [AssociationController::class, 'getData']);
 Route::post('/Association/create', [AssociationController::class, 'store']);

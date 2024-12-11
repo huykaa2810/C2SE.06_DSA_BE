@@ -17,5 +17,14 @@ class Post extends Model
         'image',
         'is_open',
     ];
-}
 
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'member_id', 'id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Categories::class, 'category_id', 'id');
+    }
+}

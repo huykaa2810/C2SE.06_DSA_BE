@@ -15,6 +15,12 @@ class Categories extends Model
         'parent_category_id',
         'is_open',
     ];
+
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category_id', 'id');
+    }
 }
 
 

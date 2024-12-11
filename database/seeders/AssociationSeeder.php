@@ -25,6 +25,8 @@ class AssociationSeeder extends Seeder
                 'registered_phone_number' => '0987654321',
                 'address' => '137 Nguyễn Văn Linh, TP Đà Nẵng',
                 'website' => 'http://vkcjbkvcbc.com',
+                'avatar' => 'http://avatar1.jpg',
+
                 'is_active' => 1,
                 'is_open' => 1,
                 'company_name' => 'Đại Học Duy Tân',
@@ -40,6 +42,8 @@ class AssociationSeeder extends Seeder
                 'registered_phone_number' => '0987654321',
                 'address' => 'TP Đà Nẵng',
                 'website' => 'http://vkcjbkvcbc.com',
+                'avatar' => 'http://avatar2.jpg',
+
                 'is_active' => 1,
                 'is_open' => 1,
                 'company_name' => 'C2SE06',

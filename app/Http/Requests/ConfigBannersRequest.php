@@ -31,7 +31,6 @@ class ConfigBannersRequest extends FormRequest
     {
         return [
             'image.required' => 'bắt buộc nhập ảnh.',
-            // 'url.url' => 'URL phải có định dạng hợp lệ.',
             'priority.required' => 'Phải nhập số.',
 
             'is_open.required' => 'Trạng thái mở là bắt buộc.',

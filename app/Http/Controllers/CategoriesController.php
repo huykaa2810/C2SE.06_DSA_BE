@@ -16,8 +16,6 @@ class CategoriesController extends Controller
             'categories'  =>  $data
 
         ]);
-
-
     }
 
     //trả về danh mục có id tương ứng
@@ -36,22 +34,22 @@ class CategoriesController extends Controller
 
 
     // lấy danh mục con bằng ID của danh mục cha
-        public function getChildCategories($parentId)
-        {
-            // Lấy tất cả danh mục con dựa trên ID của danh mục cha
-            $childCategories = Categories::where('parent_category_id', $parentId)
-                ->select('id', 'name') // Giả sử tên trường là 'name'
-                ->get();
+    public function getChildCategories($parentId)
+    {
+        // Lấy tất cả danh mục con dựa trên ID của danh mục cha
+        $childCategories = Categories::where('parent_category_id', $parentId)
+            ->select('id', 'name') // Giả sử tên trường là 'name'
+            ->get();
 
-            if ($childCategories->isEmpty()) {
-                return response()->json(['message' => 'Không tìm thấy danh mục con'], 404);
-            }
-
-            return response()->json([
-                'parent_id' => $parentId,
-                'child_categories' => $childCategories
-            ]);
+        if ($childCategories->isEmpty()) {
+            return response()->json(['message' => 'Không tìm thấy danh mục con'], 404);
         }
+
+        return response()->json([
+            'parent_id' => $parentId,
+            'child_categories' => $childCategories
+        ]);
+    }
 
 
 
@@ -82,5 +80,19 @@ class CategoriesController extends Controller
             'status'    =>  true,
             'message'   =>  'Đã cập nhật thể loại thành công!'
         ]);
+    }
+
+    public function getPostsByCategory($id)
+    {
+        $category = Categories::with('posts')->find($id);
+
+        if ($category) {
+            return response()->json($category->posts, 200);
+        } else {
+            return response()->json([
+                '
+            message' => 'Category không tồn tại'
+            ]);
+        }
     }
 }
