@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ConfigBanners extends Model
 {
     use HasFactory;
-    protected $table = 'configbanners';
+    protected $table = 'config_banners';
 
     protected $fillable = [
 

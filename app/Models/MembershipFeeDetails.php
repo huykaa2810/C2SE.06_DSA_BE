@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class MembershipFeeDetails extends Model
 {
     use HasFactory;
-    protected $table = ' membershipfeedetails';
-    protected $fillable =[
-        
+    protected $table = ' membership_fee_details';
+    protected $fillable = [
+
         'amount_id',
         'member_id',
         'status',
