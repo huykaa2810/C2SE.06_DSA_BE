@@ -22,6 +22,7 @@ class PostSeeder extends Seeder
                 'content' => 'Nội dung bài viết 1.',
                 'image' => 'https://example.com/image1.jpg',
                 'is_open' => 1,
+                'view' => 100,
             ],
             [
                 'category_id' => 2,
@@ -30,6 +31,8 @@ class PostSeeder extends Seeder
                 'content' => 'Nội dung bài viết 2.',
                 'image' => 'https://example.com/image2.jpg',
                 'is_open' => 0,
+                'view' => 2032,
+
             ],
             [
                 'category_id' => 1,
@@ -38,6 +41,8 @@ class PostSeeder extends Seeder
                 'content' => 'Nội dung bài viết 3.',
                 'image' => 'https://example.com/image3.jpg',
                 'is_open' => 1,
+                'view' => 123213,
+
             ],
         ]);
     }

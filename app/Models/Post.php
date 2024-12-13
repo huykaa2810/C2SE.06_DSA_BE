@@ -16,6 +16,7 @@ class Post extends Model
         'content',
         'image',
         'is_open',
+        'view',
     ];
 
     public function member()

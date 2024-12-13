@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('content');
             $table->string('image');
             $table->boolean('is_open');
+            $table->integer('view')->default(0);
             $table->timestamps();
         });
     }

@@ -16,22 +16,22 @@ class ConfigBannersSeeder extends Seeder
         DB::table('config_banners')->delete();
         DB::table('config_banners')->insert([
             [
-                'image' => 'image1',
+                'image' => 'https://minhduongads.com/wp-content/uploads/2019/03/truyen-thong-minh-duong.jpg',
                 'priority' => 1,
                 'is_open' => true,
             ],
             [
-                'image' => 'image2',
+                'image' => 'https://insieutoc.vn/wp-content/uploads/2021/02/mau-banner-dep.jpg',
                 'priority' => 2,
                 'is_open' => false,
             ],
             [
-                'image' => 'image3',
+                'image' => 'https://i.pinimg.com/736x/98/cf/09/98cf094d756707002760dacf3d575ae4.jpg',
                 'priority' => 3,
                 'is_open' => true,
             ],
             [
-                'image' => 'image4',
+                'image' => 'https://chiasefilethietke.com/uploads/202312/chiasefilethietkecom-000822.jpg',
                 'priority' => 0,
                 'is_open' => true,
             ],

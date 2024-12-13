@@ -22,8 +22,8 @@ class MemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_name' => 'required|string|alpha_num|unique:users,user_name|max:255',
-            'password' => 'required|string|min:8|regex:/[0-9]/',
+            'user_name' => 'required|string',
+            'password' => 'required|string',
 
 
             'full_name' => 'required|string|max:255',
@@ -39,15 +39,15 @@ class MemberRequest extends FormRequest
     {
         return [
             'user_name.required' => 'Tên người dùng là bắt buộc.',
-            'user_name.string' => 'Tên người dùng phải là chuỗi ký tự.',
-            'user_name.alpha_num' => 'Tên người dùng chỉ được chứa chữ cái và số.',
-            'user_name.unique' => 'Tên người dùng đã tồn tại.',
-            'user_name.max' => 'Tên người dùng không được vượt quá 255 ký tự.',
+            // 'user_name.string' => 'Tên người dùng phải là chuỗi ký tự.',
+            // 'user_name.alpha_num' => 'Tên người dùng chỉ được chứa chữ cái và số.',
+            // 'user_name.unique' => 'Tên người dùng đã tồn tại.',
+            // 'user_name.max' => 'Tên người dùng không được vượt quá 255 ký tự.',
 
             'password.required' => 'Mật khẩu là bắt buộc.',
-            'password.string' => 'Mật khẩu phải là chuỗi ký tự.',
-            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
-            'password.regex' => 'Mật khẩu phải chứa ít nhất một số.',
+            // 'password.string' => 'Mật khẩu phải là chuỗi ký tự.',
+            // 'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
+            // 'password.regex' => 'Mật khẩu phải chứa ít nhất một số.',
 
             'full_name.required' => 'Tên người đăng ký là bắt buộc.',
             'full_name.string' => 'Tên người đăng ký phải là chuỗi ký tự.',

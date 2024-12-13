@@ -82,7 +82,7 @@ class MemberController extends Controller
                     'message'   =>  'Tài khoản của bạn đã bị khoá!'
                 ]);
             }
-            if ($user->is_active) {
+            if ($user->is_open) {
                 return response()->json([
                     'status'    =>  true,
                     'token'     => $user->createToken('token')->plainTextToken,
