@@ -41,7 +41,57 @@ class PostSeeder extends Seeder
                 'content' => 'Nội dung bài viết 3.',
                 'image' => 'https://example.com/image3.jpg',
                 'is_open' => 1,
-                'view' => 123213,
+                'view' => 1553,
+
+            ],
+            [
+                'category_id' => 1,
+                'member_id' => 3,
+                'title' => 'Bài viết 4',
+                'content' => 'Nội dung bài viết 4.',
+                'image' => 'https://example.com/image4.jpg',
+                'is_open' => 1,
+                'view' => 16713,
+
+            ],
+            [
+                'category_id' => 1,
+                'member_id' => 3,
+                'title' => 'Bài viết 5',
+                'content' => 'Nội dung bài viết 4.',
+                'image' => 'https://example.com/image5.jpg',
+                'is_open' => 1,
+                'view' => 13213,
+
+            ],
+            [
+                'category_id' => 1,
+                'member_id' => 3,
+                'title' => 'Bài viết 6',
+                'content' => 'Nội dung bài viết 6.',
+                'image' => 'https://example.com/image6.jpg',
+                'is_open' => 1,
+                'view' => 188,
+
+            ],
+            [
+                'category_id' => 1,
+                'member_id' => 3,
+                'title' => 'Bài viết 8',
+                'content' => 'Nội dung bài viết 8.',
+                'image' => 'https://example.com/image8.jpg',
+                'is_open' => 1,
+                'view' => 8,
+
+            ],
+            [
+                'category_id' => 1,
+                'member_id' => 3,
+                'title' => 'Bài viết 7',
+                'content' => 'Nội dung bài viết 7.',
+                'image' => 'https://example.com/image7.jpg',
+                'is_open' => 1,
+                'view' => 300,
 
             ],
         ]);

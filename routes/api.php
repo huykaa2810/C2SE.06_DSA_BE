@@ -57,6 +57,8 @@ Route::delete('/Post/delete{id}', [PostController::class, 'destroy']);
 Route::put('/Post/update', [PostController::class, 'update']);
 Route::get('/posts/latest', [PostController::class, 'latest']);
 Route::get('/posts/search', [PostController::class, 'search']);
+Route::get('/posts/top', [PostController::class, 'getTopPosts']);
+Route::get('/posts/latest/{category_id}', [PostController::class, 'getLatestPostsByCategory']);
 
 Route::get('/Association/data', [AssociationController::class, 'getData']);
 Route::post('/Association/create', [AssociationController::class, 'store']);
@@ -90,3 +92,4 @@ Route::post('/admin/dang-nhap', [AssociationController::class, 'dangNhap']);
 Route::post('/member/dang-nhap', [MemberController::class, 'dangNhap']);
 // Route::post("/kiem-tra-token-admin", [AssociationController::class, "kiemTraToken"]);
 // Route::get("/kiem-tra-token-member", [MemberController::class, "kiemTraToken"]);
+Route::middleware('auth:sanctum')->get('/kiem-tra-token-member', [MemberController::class, 'kiemTraToken']);

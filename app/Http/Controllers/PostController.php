@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PostController extends Controller
 {
@@ -47,10 +48,9 @@ class PostController extends Controller
 
     public function latest()
     {
-        // lấy bài post mới nhất
         $latestPost = Post::orderBy('created_at', 'desc')->first();
 
-        // check bài viết có tồn tại ko
+
         if ($latestPost) {
             return response()->json($latestPost, 200);
         } else {
@@ -67,5 +67,24 @@ class PostController extends Controller
         $posts = Post::where('title', 'LIKE', "%{$query}%")->get();
 
         return response()->json($posts, 200);
+    }
+
+
+    public function getTopPosts()
+    {
+
+        $topPosts = Post::orderBy('view', 'desc')->take(5)->get();
+
+        return response()->json($topPosts);
+    }
+    public function getLatestPostsByCategory($category_id)
+    {
+
+        $latestPosts = Post::where('category_id', $category_id)
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return response()->json($latestPosts);
     }
 }
