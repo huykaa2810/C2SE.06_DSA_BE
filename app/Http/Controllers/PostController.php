@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Tracking;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -89,4 +90,25 @@ class PostController extends Controller
 
         return response()->json($latestPosts);
     }
+
+    public function truyCapWeb()
+{
+    // Tìm bản ghi trong bảng tracking (giả sử có một bản ghi cho toàn bộ lượt truy cập)
+    $tracking = Tracking::first();
+
+    // Nếu không có bản ghi, tạo mới
+    if (!$tracking) {
+        $tracking = Tracking::create(['visit_count' => 0]);
+    }
+
+    // Tăng số lượt truy cập lên 1
+    $tracking->increment('visit_count');
+
+    // Trả về phản hồi
+    return response()->json([
+        'status' => true,
+        'message' => 'Số lượt truy cập đã được cập nhật.',
+        'visit_count' => $tracking->visit_count + 1 // Trả về số lượt truy cập vừa tăng
+    ]);
+}
 }

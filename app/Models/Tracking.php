@@ -10,7 +10,7 @@ class Tracking extends Model
     use HasFactory;
     protected $tabletable = 'trackings';
     protected $fillable = [
+        'date',
         'visit_count',
-
     ];
 }

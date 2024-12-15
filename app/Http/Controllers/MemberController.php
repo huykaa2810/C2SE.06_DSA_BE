@@ -51,7 +51,7 @@ class MemberController extends Controller
 
     public function dangKy(Request $request)
     {
-        $check_mail = Member::where('email', $request->email)->first();
+        $check_mail = Member::where('user_name', $request->user_name)->first();
         if ($check_mail) {
             return response()->json([
                 'status' => false,
@@ -60,11 +60,7 @@ class MemberController extends Controller
         } else {
             $data                   =   $request->all();
             $data['password']       =   bcrypt($request->password);
-            $data['hash_active']    =   Str::uuid();
             Member::create($data);
-
-            $mail['ho_va_ten']      =   $request->ho_lot . " " . $request->ten;
-            $mail['link']           =   "http://localhost:5173/kich-hoat/" . $data['hash_active'];
             return response()->json([
                 'status' => true,
                 'message' => "Đăng kí tài khoản thành công!"
@@ -143,6 +139,3 @@ class MemberController extends Controller
         ]);
     }
 }
-
-
-

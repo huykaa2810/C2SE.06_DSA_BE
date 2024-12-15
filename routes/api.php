@@ -12,6 +12,7 @@ use App\Http\Controllers\MembershipFeeController;
 use App\Http\Controllers\MembershipFeeDetailsController;
 use App\Http\Controllers\PhotoLibraryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\UserController;
 use App\Models\Document;
 use Illuminate\Http\Request;
@@ -91,6 +92,11 @@ Route::put('/member/update', [MemberController::class, 'update']);
 Route::post('/dang-ky', [MemberController::class, 'dangKy']);
 Route::post('/association/dang-nhap', [AssociationController::class, 'dangNhap']);
 Route::post('/member/dang-nhap', [MemberController::class, 'dangNhap']);
+Route::get('/posts/{id}/view', [PostController::class, 'xemBaiViet']);
+
+
+Route::get('/tracking', [TrackingController::class, 'vitsitcount']);
+Route::get('/tracking/today', [TrackingController::class, 'vitsitcountBytoday']);
 
 Route::middleware('auth:sanctum')->get('/kiem-tra-token-member', [MemberController::class, 'kiemTraToken']);
 Route::middleware('auth:sanctum')->get('/kiem-tra-token-association', [AssociationController::class, 'kiemTraToken']);

@@ -31,8 +31,8 @@ class MemberRequest extends FormRequest
             'phone_number' => 'required|numeric|min:10000',
             'address' => 'required|string|max:255',
             'is_active' => 'required|boolean',
-            'is_open' => 'required|boolean',
-            'is_member' => 'required|boolean',
+            'is_open' => 'required|boolean'
+
         ];
     }
     public function messages()
@@ -71,8 +71,7 @@ class MemberRequest extends FormRequest
             'is_open.required' => 'Trạng thái mở là bắt buộc.',
             'is_open.boolean' => 'Trạng thái mở phải là đúng hoặc sai.',
 
-            'is_member.required' => 'Trạng thái thành viên là bắt buộc.',
-            'is_member.boolean' => 'Trạng thái thành viên phải là đúng hoặc sai.',
+
         ];
     }
 }

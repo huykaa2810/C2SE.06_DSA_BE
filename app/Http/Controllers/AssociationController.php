@@ -76,20 +76,17 @@ class AssociationController extends Controller
     }
     public function kiemTraToken(Request $request)
     {
-        $user = $request->user();
-
-        if ($user) {
+        if ($request->user()) {
             return response()->json([
                 'status' => true,
-                'message' => 'Token hợp lệ',
-                'user' => $user
+                'user' => $request->user(),
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Token không hợp lệ',
             ]);
         }
-
-        return response()->json([
-            'status' => false,
-            'message' => 'Token không hợp lệ hoặc đã hết hạn'
-        ]);
     }
 
     public function getAllAvatars()
