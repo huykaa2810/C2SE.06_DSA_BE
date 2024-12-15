@@ -10,7 +10,7 @@ class Events extends Model
     use HasFactory;
     protected $table = 'events';
     protected $fillable = [
-        
+
         'title',
         'image',
         'content',
@@ -21,4 +21,9 @@ class Events extends Model
         'status',
 
     ];
+
+    public function association()
+    {
+        return $this->belongsTo(Association::class, 'organizer_id', 'id');
+    }
 }

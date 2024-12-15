@@ -22,7 +22,6 @@ class Association extends Authenticatable
         'phone_number',
         'registered_phone_number',
         'address',
-
         'website',
         'avatar',
         'is_active',
@@ -30,4 +29,14 @@ class Association extends Authenticatable
         'company_name',
         'is_master',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'member_id', 'id');
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Events::class, 'organizer_id', 'id'); // 'organizer_id' là khóa ngoại trong bảng events
+    }
 }

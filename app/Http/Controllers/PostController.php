@@ -5,16 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class PostController extends Controller
 {
     public function getData()
     {
-        $data   =   Post::all();
+        $data = Post::with(['association:id,registrant_name', 'category:id,category_name'])->get();
 
         return response()->json([
             'posts'  =>  $data
+        ]);
+    }
+    public function getPostById($id)
+    {
+        // Lấy bài viết theo id và thông tin member
+        $post = Post::with('association:id,registrant_name', 'category:id,category_name')->findOrFail($id);
+
+        return response()->json([
+            'post' => $post
         ]);
     }
     public function store(PostRequest $request)
@@ -45,12 +53,9 @@ class PostController extends Controller
             'message'   =>  'Đã cập nhật bài viết thành công!'
         ]);
     }
-
     public function latest()
     {
         $latestPost = Post::orderBy('created_at', 'desc')->first();
-
-
         if ($latestPost) {
             return response()->json($latestPost, 200);
         } else {
@@ -59,7 +64,6 @@ class PostController extends Controller
             ]);
         }
     }
-
     public function search(Request $request)
     {
         $query = $request->input('q');
@@ -68,8 +72,6 @@ class PostController extends Controller
 
         return response()->json($posts, 200);
     }
-
-
     public function getTopPosts()
     {
 

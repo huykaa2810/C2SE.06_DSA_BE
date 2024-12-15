@@ -121,4 +121,28 @@ class MemberController extends Controller
             'message' => 'Token không hợp lệ hoặc đã hết hạn'
         ]);
     }
+
+    public function updateCurrentUser(Request $request)
+    {
+        $user = Auth::guard('member')->user();
+
+        if ($user->id != $request->id) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Bạn không có quyền cập nhật thông tin của người khác!'
+            ], 403);
+        }
+
+        $data = $request->only(['subscriber_email', 'full_name', 'avatar', 'address']);
+
+        $user->update($data);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Thông tin của bạn đã được cập nhật thành công!'
+        ]);
+    }
 }
+
+
+

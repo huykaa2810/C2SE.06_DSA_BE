@@ -18,10 +18,9 @@ class Post extends Model
         'is_open',
         'view',
     ];
-
-    public function member()
+    public function association()
     {
-        return $this->belongsTo(Member::class, 'member_id', 'id');
+        return $this->belongsTo(Association::class, 'member_id', 'id');
     }
 
     public function category()

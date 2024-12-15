@@ -64,6 +64,7 @@ Route::get('/Association/data', [AssociationController::class, 'getData']);
 Route::post('/Association/create', [AssociationController::class, 'store']);
 Route::delete('/Association/delete{id}', [AssociationController::class, 'destroy']);
 Route::put('/Association/update', [AssociationController::class, 'update']);
+Route::get('/associations/avatars', [AssociationController::class, 'getAllAvatars']);
 
 Route::get('/MembershipFee/data', [MembershipFeeController::class, 'getData']);
 Route::post('/MembershipFee/create', [MembershipFeeController::class, 'store']);
@@ -88,8 +89,13 @@ Route::put('/member/update', [MemberController::class, 'update']);
 
 
 Route::post('/dang-ky', [MemberController::class, 'dangKy']);
-Route::post('/admin/dang-nhap', [AssociationController::class, 'dangNhap']);
+Route::post('/association/dang-nhap', [AssociationController::class, 'dangNhap']);
 Route::post('/member/dang-nhap', [MemberController::class, 'dangNhap']);
-// Route::post("/kiem-tra-token-admin", [AssociationController::class, "kiemTraToken"]);
-// Route::get("/kiem-tra-token-member", [MemberController::class, "kiemTraToken"]);
+
 Route::middleware('auth:sanctum')->get('/kiem-tra-token-member', [MemberController::class, 'kiemTraToken']);
+Route::middleware('auth:sanctum')->get('/kiem-tra-token-association', [AssociationController::class, 'kiemTraToken']);
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::put('/user/update', [MemberController::class, 'updateCurrentUser']);
+});

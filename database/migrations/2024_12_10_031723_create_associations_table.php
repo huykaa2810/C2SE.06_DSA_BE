@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('registered_phone_number');
             $table->string('address');
-
             $table->string('website');
             $table->string('avatar');
             $table->boolean('is_active');
