@@ -17,7 +17,7 @@ class MemberSeeder extends Seeder
         DB::table('members')->insert([
             [
                 'user_name' => 'Duytan123@gmail.com',
-                'password' => bcrypt('123456'),
+                'password' => bcrypt('12345678'),
                 'avatar' => 'http://avatar1.jpg',
                 'full_name' => 'Huỳnh Lê Quang Huy',
                 'subscriber_email' => 'huy281002@gmail.com',
@@ -27,7 +27,7 @@ class MemberSeeder extends Seeder
             ],
             [
                 'user_name' => 'DongA123@gmail.com',
-                'password' => bcrypt('123456'),
+                'password' => bcrypt('12345678'),
                 'avatar' => 'http://avatar2.jpg',
                 'full_name' => 'Trần Đoàn Đình Long',
                 'subscriber_email' => 'dinhlong123@gmai.com',

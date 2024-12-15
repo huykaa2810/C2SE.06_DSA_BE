@@ -58,6 +58,7 @@ Route::delete('/Post/delete{id}', [PostController::class, 'destroy']);
 Route::put('/Post/update', [PostController::class, 'update']);
 Route::get('/posts/latest', [PostController::class, 'latest']);
 Route::get('/posts/search', [PostController::class, 'search']);
+Route::get('/posts/recommend', [PostController::class, 'recommend']);
 Route::get('/posts/top', [PostController::class, 'getTopPosts']);
 Route::get('/posts/latest/{category_id}', [PostController::class, 'getLatestPostsByCategory']);
 
@@ -66,17 +67,6 @@ Route::post('/Association/create', [AssociationController::class, 'store']);
 Route::delete('/Association/delete{id}', [AssociationController::class, 'destroy']);
 Route::put('/Association/update', [AssociationController::class, 'update']);
 Route::get('/associations/avatars', [AssociationController::class, 'getAllAvatars']);
-
-Route::get('/MembershipFee/data', [MembershipFeeController::class, 'getData']);
-Route::post('/MembershipFee/create', [MembershipFeeController::class, 'store']);
-Route::delete('/MembershipFee/delete{id}', [MembershipFeeController::class, 'destroy']);
-Route::put('/MembershipFee/update', [MembershipFeeController::class, 'update']);
-
-
-Route::get('/MembershipFeeDetails/data', [MembershipFeeDetailsController::class, 'getData']);
-Route::post('/MembershipFeeDetails/create', [MembershipFeeDetailsController::class, 'store']);
-Route::delete('/MembershipFeeDetails/delete{id}', [MembershipFeeDetailsController::class, 'destroy']);
-Route::put('/MembershipFeeDetails/update', [MembershipFeeDetailsController::class, 'update']);
 
 Route::get('/Contact/data', [ContactController::class, 'getData']);
 Route::post('/Contact/create', [ContactController::class, 'store']);

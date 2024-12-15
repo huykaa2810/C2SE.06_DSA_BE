@@ -37,6 +37,6 @@ class Association extends Authenticatable
 
     public function events()
     {
-        return $this->hasMany(Events::class, 'organizer_id', 'id'); // 'organizer_id' là khóa ngoại trong bảng events
+        return $this->hasMany(Events::class, 'organizer_id', 'id');
     }
 }

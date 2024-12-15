@@ -22,12 +22,12 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => 'required|exists:categories,id', // Kiểm tra xem ID danh mục có tồn tại trong bảng categories
-            'member_id' => 'required|exists:members,id', // Kiểm tra xem ID thành viên có tồn tại trong bảng members
-            'title' => 'required|string|max:255', // Tiêu đề là bắt buộc, phải là chuỗi và không vượt quá 255 ký tự
-            'content' => 'required|string|min:10', // Nội dung là bắt buộc, phải là chuỗi và tối thiểu 10 ký tự
-            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Kiểm tra định dạng hình ảnh và kích thước tối đa 2MB
-            'is_open' => 'required|boolean', // Trạng thái mở là bắt buộc và phải là true hoặc false
+            'category_id' => 'required|exists:categories,id',
+            'member_id' => 'required|exists:associations,id',
+            'title' => 'required|string|max:255',
+            'content' => 'required|string|min:10',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'is_open' => 'required|boolean',
         ];
     }
 

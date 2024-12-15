@@ -22,11 +22,11 @@ class AssociationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_name'                  => 'required|min:5|alpha_num|unique:users,username',
-            'password'                  => 'required|min:8|regex:/[0-9]/',
-            'company_email'             => 'required|email|unique:companies,email',
+            'user_name'                  => 'required|min:5|unique:associations,user_name',
+            'password'                  => 'required|min:8',
+            'company_email'             => 'required|email',
             'registrant_name'           => 'required|string|max:255',
-            'subscriber_email'          => 'required|email|unique:subscribers,email',
+            'subscriber_email'          => 'required|email',
             'phone_number'              => 'required|numeric',
             'registered_phone_number'   => 'required|numeric',
             'address'                   => 'required|string|max:255',
@@ -46,12 +46,11 @@ class AssociationRequest extends FormRequest
         return [
             'user_name.required' => 'Tên người dùng là bắt buộc.',
             'user_name.min' => 'Tên người dùng phải có ít nhất 5 ký tự.',
-            'user_name.alpha_num' => 'Tên người dùng chỉ được chứa chữ cái và số.',
             'user_name.unique' => 'Tên người dùng đã tồn tại.',
 
             'password.required' => 'Mật khẩu là bắt buộc.',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
-            'password.regex' => 'Mật khẩu phải chứa ít nhất một số.',
+
 
             'company_email.required' => 'Email công ty là bắt buộc.',
             'company_email.email' => 'Email công ty phải có định dạng hợp lệ.',
@@ -63,7 +62,6 @@ class AssociationRequest extends FormRequest
 
             'subscriber_email.required' => 'Email người đăng ký là bắt buộc.',
             'subscriber_email.email' => 'Email người đăng ký phải có định dạng hợp lệ.',
-            'subscriber_email.unique' => 'Email người đăng ký đã tồn tại.',
 
             'phone_number.required' => 'Số điện thoại là bắt buộc.',
             'phone_number.numeric' => 'Số điện thoại phải là số.',

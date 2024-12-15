@@ -23,7 +23,7 @@ class EventsRequest extends FormRequest
     {
         return [
             'title'         => 'required|min:5',
-            'image'         => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'image'         => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'content'       => 'required|min:10',
             'event_date'    => 'required|date|after_or_equal:today',
             'location'      => 'required|min:5',
@@ -36,7 +36,7 @@ class EventsRequest extends FormRequest
     {
         return [
             'title'         => 'title phải từ 5 ký tự.',
-            'image'         => 'image phải là dạng tệp cho hình ảnh và giới hạn kích thước tệp tối đa là 2MB.',
+            // 'image'         => 'image phải là dạng tệp cho hình ảnh và giới hạn kích thước tệp tối đa là 2MB.',
             'content'       => 'content có ít nhất 10 ký tự.',
             'event_date'    => 'event_date phải đảm bảo rằng ngày sự kiện không được trước ngày hôm nay',
             'location'      => 'location phải từ 5 ký tự.',

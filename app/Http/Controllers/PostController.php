@@ -65,21 +65,31 @@ class PostController extends Controller
             ]);
         }
     }
+
     public function search(Request $request)
     {
         $query = $request->input('q');
+        $posts = Post::where('title', 'LIKE', "%{$query}%")->take(3)->get();
+        return response()->json($posts, 200);
+    }
 
-        $posts = Post::where('title', 'LIKE', "%{$query}%")->get();
+    public function recommend(Request $request)
+    {
+        $query = $request->input('q');
+        $posts = Post::where('title', 'LIKE', "%{$query}%")
+            ->select('id', 'title')
+            ->take(3)
+            ->get();
 
         return response()->json($posts, 200);
     }
+
     public function getTopPosts()
     {
-
         $topPosts = Post::orderBy('view', 'desc')->take(5)->get();
-
         return response()->json($topPosts);
     }
+
     public function getLatestPostsByCategory($category_id)
     {
 
@@ -92,23 +102,23 @@ class PostController extends Controller
     }
 
     public function truyCapWeb()
-{
-    // Tìm bản ghi trong bảng tracking (giả sử có một bản ghi cho toàn bộ lượt truy cập)
-    $tracking = Tracking::first();
+    {
+        // Tìm bản ghi trong bảng tracking (giả sử có một bản ghi cho toàn bộ lượt truy cập)
+        $tracking = Tracking::first();
 
-    // Nếu không có bản ghi, tạo mới
-    if (!$tracking) {
-        $tracking = Tracking::create(['visit_count' => 0]);
+        // Nếu không có bản ghi, tạo mới
+        if (!$tracking) {
+            $tracking = Tracking::create(['visit_count' => 0]);
+        }
+
+        // Tăng số lượt truy cập lên 1
+        $tracking->increment('visit_count');
+
+        // Trả về phản hồi
+        return response()->json([
+            'status' => true,
+            'message' => 'Số lượt truy cập đã được cập nhật.',
+            'visit_count' => $tracking->visit_count + 1 // Trả về số lượt truy cập vừa tăng
+        ]);
     }
-
-    // Tăng số lượt truy cập lên 1
-    $tracking->increment('visit_count');
-
-    // Trả về phản hồi
-    return response()->json([
-        'status' => true,
-        'message' => 'Số lượt truy cập đã được cập nhật.',
-        'visit_count' => $tracking->visit_count + 1 // Trả về số lượt truy cập vừa tăng
-    ]);
-}
 }

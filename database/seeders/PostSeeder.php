@@ -112,7 +112,6 @@ class PostSeeder extends Seeder
                 'image' => 'https://dsa.org.vn/wp-content/uploads/2024/10/DSC_6582-300x150.jpg',
                 'is_open' => 1,
                 'view' => 300,
-
             ],
         ]);
     }
