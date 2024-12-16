@@ -7,8 +7,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Hash;
 
 class MemberController extends Controller
 {
@@ -137,5 +136,21 @@ class MemberController extends Controller
             'status' => true,
             'message' => 'Thông tin của bạn đã được cập nhật thành công!'
         ]);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+        $member = Auth::member();
+        if (!Hash::check($request->current_password, $member->password)) {
+            return response()->json(['message' => 'Mật khẩu hiện tại không đúng.']);
+        }
+        $member->password = Hash::make($request->new_password);
+        $member->save();
+
+        return response()->json(['message' => 'Đổi mật khẩu thành công.']);
     }
 }

@@ -12,11 +12,11 @@ return [
         ],
         'association' => [
             'driver' => 'session',
-            'provider' => 'association',
+            'provider' => 'associations',
         ],
         'member' => [
             'driver' => 'session',
-            'provider' => 'member',
+            'provider' => 'members',
         ],
     ],
     'providers' => [

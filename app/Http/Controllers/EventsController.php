@@ -44,4 +44,13 @@ class EventsController extends Controller
             'message'   =>  'Đã cập nhật sự kiện thành công!'
         ]);
     }
+
+    public function getEventsByOrganizer($organizer_id)
+    {
+        $events = Events::where('organizer_id', $organizer_id)->get();
+        if ($events->isEmpty()) {
+            return response()->json(['message' => 'Không tìm thấy sự kiện nào cho người tổ chức này']);
+        }
+        return response()->json($events);
+    }
 }

@@ -46,6 +46,9 @@ Route::get('/Events/data', [EventsController::class, 'getData']);
 Route::post('/Events/create', [EventsController::class, 'store']);
 Route::delete('/Events/delete{id}', [EventsController::class, 'destroy']);
 Route::put('/Events/update', [EventsController::class, 'update']);
+Route::get('/events/organizer/{organizer_id}', [EventsController::class, 'getEventsByOrganizer']);
+
+
 
 Route::get('/PhotoLibrary/data', [PhotoLibraryController::class, 'getData']);
 Route::post('/PhotoLibrary/create', [PhotoLibraryController::class, 'store']);
@@ -60,13 +63,20 @@ Route::get('/posts/latest', [PostController::class, 'latest']);
 Route::get('/posts/search', [PostController::class, 'search']);
 Route::get('/posts/recommend', [PostController::class, 'recommend']);
 Route::get('/posts/top', [PostController::class, 'getTopPosts']);
+Route::get('/posts/{id}/view', [PostController::class, 'xemBaiViet']);
 Route::get('/posts/latest/{category_id}', [PostController::class, 'getLatestPostsByCategory']);
+Route::get('/posts/member/{member_id}', [PostController::class, 'getPostsByMember']);
+
+Route::get('/Posts/latest-five', [PostController::class, 'getLatestPosts']);
+Route::get('/posts/category/{category_id}', [PostController::class, 'getPostsByCategory']);
 
 Route::get('/Association/data', [AssociationController::class, 'getData']);
 Route::post('/Association/create', [AssociationController::class, 'store']);
 Route::delete('/Association/delete{id}', [AssociationController::class, 'destroy']);
 Route::put('/Association/update', [AssociationController::class, 'update']);
-Route::get('/associations/avatars', [AssociationController::class, 'getAllAvatars']);
+Route::get('/Associations/avatars', [AssociationController::class, 'getAllAvatars']);
+Route::get('/Associations/search', [AssociationController::class, 'search']);
+Route::get('/Associations/{id}', [AssociationController::class, 'getAssociationById']);
 
 Route::get('/Contact/data', [ContactController::class, 'getData']);
 Route::post('/Contact/create', [ContactController::class, 'store']);
@@ -77,12 +87,14 @@ Route::get('/member/data', [MemberController::class, 'getData']);
 Route::post('/member/create', [MemberController::class, 'store']);
 Route::delete('/member/delete{id}', [MemberController::class, 'destroy']);
 Route::put('/member/update', [MemberController::class, 'update']);
+Route::post('/member/doi-mat-khau', [MemberController::class, 'changePassword']);
+
+
 
 
 Route::post('/dang-ky', [MemberController::class, 'dangKy']);
 Route::post('/association/dang-nhap', [AssociationController::class, 'dangNhap']);
 Route::post('/member/dang-nhap', [MemberController::class, 'dangNhap']);
-Route::get('/posts/{id}/view', [PostController::class, 'xemBaiViet']);
 
 
 Route::get('/tracking', [TrackingController::class, 'vitsitcount']);

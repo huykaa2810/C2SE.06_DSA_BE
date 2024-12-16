@@ -95,4 +95,26 @@ class AssociationController extends Controller
 
         return response()->json($avatars);
     }
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+        $results = Association::where('company_name', 'LIKE', "%{$query}%")
+            ->select('id', 'company_name', 'avatar')
+            ->take(3)
+            ->get();
+        return response()->json($results, 200);
+    }
+
+    public function getAssociationById($id)
+    {
+        $association = Association::find($id);
+
+        if (!$association) {
+            return response()->json(['message' => 'Association not found'], 404);
+        }
+        $associationData = $association->makeHidden(['password']);
+        return response()->json($associationData);
+    }
 }
