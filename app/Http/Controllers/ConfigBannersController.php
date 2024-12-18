@@ -43,15 +43,28 @@ class ConfigBannersController extends Controller
         ]);
     }
 
-    public function destroy($id)
-    {
-        ConfigBanners::find($id)->delete();
+    // public function destroy($id)
+    // {
+    //     ConfigBanners::find($id)->delete();
 
-        return response()->json([
-            'status'    =>  true,
-            'message'   =>  'Đã xoá banner thành công!'
-        ]);
-    }
+    //     return response()->json([
+    //         'status'    =>  true,
+    //         'message'   =>  'Đã xoá banner thành công!'
+    //     ]);
+    // }
+
+        public function destroy($id)
+        {
+            $banner = ConfigBanners::find($id);
+
+            if (!$banner) {
+                return Response()->json(['message' => 'Banner không tồn tại!']);
+            }
+
+            $banner->delete();
+
+            return  Response()->json(['message' => 'Xoá Banner thành công!']);
+        }
     public function update(Request $request)
     {
         $data   = $request->all();

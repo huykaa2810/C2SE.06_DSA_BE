@@ -33,7 +33,7 @@ Route::get('/categories/{id}/posts', [CategoriesController::class, 'getPostsByCa
 Route::get('/ConfigBanners/data', [ConfigBannersController::class, 'getData']);
 Route::get('/banners/top', [ConfigBannersController::class, 'getTopBanners']);
 Route::post('/ConfigBanners/create', [ConfigBannersController::class, 'store']);
-Route::delete('/ConfigBanners/delete{id}', [ConfigBannersController::class, 'destroy']);
+Route::delete('/ConfigBanners/delete/{id}', [ConfigBannersController::class, 'destroy']);
 Route::put('/ConfigBanners/update', [ConfigBannersController::class, 'update']);
 
 
@@ -73,7 +73,8 @@ Route::get('/posts/category/{category_id}', [PostController::class, 'getPostsByC
 Route::get('/Association/data', [AssociationController::class, 'getData']);
 Route::post('/Association/create', [AssociationController::class, 'store']);
 Route::delete('/Association/delete{id}', [AssociationController::class, 'destroy']);
-Route::put('/Association/update', [AssociationController::class, 'update']);
+
+Route::put('/associations/update/{id}', [AssociationController::class, 'update']);
 Route::get('/Associations/avatars', [AssociationController::class, 'getAllAvatars']);
 Route::get('/Associations/search', [AssociationController::class, 'search']);
 Route::get('/Associations/{id}', [AssociationController::class, 'getAssociationById']);
@@ -86,7 +87,8 @@ Route::put('/Contact/update', [ContactController::class, 'update']);
 Route::get('/member/data', [MemberController::class, 'getData']);
 Route::post('/member/create', [MemberController::class, 'store']);
 Route::delete('/member/delete{id}', [MemberController::class, 'destroy']);
-Route::put('/member/update', [MemberController::class, 'update']);
+// Route::put('/member/update', [MemberController::class, 'update']);
+Route::put('/members/{id}', [MemberController::class, 'update']);
 Route::post('/member/doi-mat-khau', [MemberController::class, 'changePassword']);
 
 
