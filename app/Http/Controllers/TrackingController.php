@@ -20,18 +20,19 @@ class TrackingController extends Controller
             'visit_count' => $tracking->visit_count + 1
         ]);
     }
-    public function vitsitcountBytoday()
+    public function vitsitcountBytoday(Request $request)
     {
-        $today = now()->toDateString();
-        $tracking = Tracking::where('date', $today)->first();
-        if (!$tracking) {
-            $tracking = Tracking::create(['date' => $today, 'visit_count' => 0]);
-        }
-        $tracking->increment('visit_count');
+        $date = date('Y-m-d');
+        $tracking = Tracking::firstOrCreate(
+            ['date' => $date],
+            ['visit_count' => 0]
+        );
+        $tracking->visit_count++;
+        $tracking->save();
         return response()->json([
-            'status' => true,
-            'message' => 'Số lượt truy cập trong ngày đã được cập nhật.',
-            'visit_count' => $tracking->visit_count + 1
+            'message' => 'Lượt truy cập đã được tăng.',
+            'date' => $tracking->date,
+            'visit_count' => $tracking->visit_count,
         ]);
     }
 }

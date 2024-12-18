@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\SeachRequest;
 use App\Models\Post;
 use App\Models\Tracking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -66,10 +68,14 @@ class PostController extends Controller
         }
     }
 
-    public function search(Request $request)
+    public function search(SeachRequest $request)
     {
         $query = $request->input('q');
-        $posts = Post::where('title', 'LIKE', "%{$query}%")->take(3)->get();
+
+        $posts = Post::where('title', 'LIKE', "%{$query}%")
+            ->take(3)
+            ->get();
+
         return response()->json($posts, 200);
     }
 

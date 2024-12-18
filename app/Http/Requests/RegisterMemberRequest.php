@@ -22,14 +22,13 @@ class RegisterMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_name' => 'required|string|unique:members|max:255',
+            'user_name' => 'required|string|unique:members',
             'password' => 'required|string|min:8|confirmed',
-            'full_name' => 'required|string|max:255',
-            'subscriber_email' => 'nullable|email|max:255',
-            'phone_number' => 'nullable|string|max:20',
-            'address' => 'nullable|string|max:255',
+            'full_name' => 'required|string',
+            'subscriber_email' => 'nullable|email',
+            'phone_number' => 'nullable|string',
+            'address' => 'nullable|string',
             'avatar' => 'nullable|string',
-            'is_active' => 'boolean',
             'is_open' => 'boolean',
         ];
     }
@@ -39,9 +38,26 @@ class RegisterMemberRequest extends FormRequest
         return [
             'user_name.required' => 'Tên đăng nhập là bắt buộc.',
             'user_name.unique' => 'Tên đăng nhập đã tồn tại.',
+            'user_name.string' => 'Tên đăng nhập phải là một chuỗi.',
+
+
             'password.required' => 'Mật khẩu là bắt buộc.',
+            'password.string' => 'Mật khẩu phải là một chuỗi.',
+            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
             'password.confirmed' => 'Mật khẩu xác nhận không khớp.',
+
             'full_name.required' => 'Họ tên là bắt buộc.',
+            'full_name.string' => 'Họ tên phải là một chuỗi.',
+
+            'subscriber_email.email' => 'Email không hợp lệ.',
+
+            'phone_number.string' => 'Số điện thoại phải là một chuỗi.',
+
+            'address.string' => 'Địa chỉ phải là một chuỗi.',
+
+            'avatar.string' => 'Avatar phải là một chuỗi.',
+
+            'is_open.boolean' => 'Trạng thái mở phải là đúng hoặc sai.',
         ];
     }
 }

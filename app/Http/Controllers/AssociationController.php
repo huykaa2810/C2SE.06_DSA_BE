@@ -47,30 +47,39 @@ class AssociationController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    // public function update(Request $request, $id)
+    // {
+    //     $association = Association::find($id);
+    //     if (!$association) {
+    //         return response()->json(['message' => 'không tìm thấy Association']);
+    //     }
+    //     $association->user_name = $request->user_name;
+    //     if ($request->password) {
+    //         $association->password = bcrypt($request->password);
+    //     }
+    //     $association->company_email = $request->company_email;
+    //     $association->registrant_name = $request->registrant_name;
+    //     $association->subscriber_email = $request->subscriber_email;
+    //     $association->phone_number = $request->phone_number;
+    //     $association->registered_phone_number = $request->registered_phone_number;
+    //     $association->address = $request->address;
+    //     $association->website = $request->website;
+    //     $association->avatar = $request->avatar;
+    //     $association->is_active = $request->is_active;
+    //     $association->is_open = $request->is_open;
+    //     $association->company_name = $request->company_name;
+    //     $association->is_master = $request->is_master;
+    //     $association->save();
+    //     return response()->json(['message' => 'Association cập nhật thành công', 'association' => $association]);
+    // }
+    public function update(Request $request)
     {
-        $association = Association::find($id);
-        if (!$association) {
-            return response()->json(['message' => 'không tìm thấy Association']);
-        }
-        $association->user_name = $request->user_name;
-        if ($request->password) {
-            $association->password = bcrypt($request->password);
-        }
-        $association->company_email = $request->company_email;
-        $association->registrant_name = $request->registrant_name;
-        $association->subscriber_email = $request->subscriber_email;
-        $association->phone_number = $request->phone_number;
-        $association->registered_phone_number = $request->registered_phone_number;
-        $association->address = $request->address;
-        $association->website = $request->website;
-        $association->avatar = $request->avatar;
-        $association->is_active = $request->is_active;
-        $association->is_open = $request->is_open;
-        $association->company_name = $request->company_name;
-        $association->is_master = $request->is_master;
-        $association->save();
-        return response()->json(['message' => 'Association cập nhật thành công', 'association' => $association]);
+        $data   = $request->all();
+        Association::find($request->id)->update($data);
+        return response()->json([
+            'status'    =>  true,
+            'message'   =>  'Đã cập nhật hội viên thành công!'
+        ]);
     }
 
 

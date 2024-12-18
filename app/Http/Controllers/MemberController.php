@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\MemberRequest;
 use App\Http\Requests\RegisterMemberRequest;
 use App\Models\Member;
@@ -39,45 +40,45 @@ class MemberController extends Controller
             'message'   =>  'Đã xoá thành viên thành công!'
         ]);
     }
-    // public function update(Request $request)
-    // {
-    //     $data   = $request->all();
-    //     Member::find($request->id)->update($data);
-    //     return response()->json([
-    //         'status'    =>  true,
-    //         'message'   =>  'Đã cập nhật thành viên thành công!'
-    //     ]);
-    // }
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $request->validate([
-            'user_name' => 'required|string|max:255',
-            'password' => 'nullable|string|min:8',
-            'avatar' => 'nullable|string',
-            'full_name' => 'required|string|max:255',
-            'subscriber_email' => 'nullable|email|max:255',
-            'phone_number' => 'nullable|string|max:20',
-            'address' => 'nullable|string|max:255',
-            'is_open' => 'required|boolean',
+        $data   = $request->all();
+        Member::find($request->id)->update($data);
+        return response()->json([
+            'status'    =>  true,
+            'message'   =>  'Đã cập nhật thành viên thành công!'
         ]);
-        $member = Member::find($id);
-
-        if (!$member) {
-            return response()->json(['message' => 'Member không tồn tại']);
-        }
-        $member->user_name = $request->user_name;
-        if ($request->password) {
-            $member->password = bcrypt($request->password);
-        }
-        $member->avatar = $request->avatar;
-        $member->full_name = $request->full_name;
-        $member->subscriber_email = $request->subscriber_email;
-        $member->phone_number = $request->phone_number;
-        $member->address = $request->address;
-        $member->is_open = $request->is_open;
-        $member->save();
-        return response()->json(['message' => 'Member cập nhật thành công', 'member' => $member]);
     }
+    // public function update(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'user_name' => 'required|string|max:255',
+    //         'password' => 'nullable|string|min:8',
+    //         'avatar' => 'nullable|string',
+    //         'full_name' => 'required|string|max:255',
+    //         'subscriber_email' => 'nullable|email|max:255',
+    //         'phone_number' => 'nullable|string|max:20',
+    //         'address' => 'nullable|string|max:255',
+    //         'is_open' => 'required|boolean',
+    //     ]);
+    //     $member = Member::find($id);
+
+    //     if (!$member) {
+    //         return response()->json(['message' => 'Member không tồn tại']);
+    //     }
+    //     $member->user_name = $request->user_name;
+    //     if ($request->password) {
+    //         $member->password = bcrypt($request->password);
+    //     }
+    //     $member->avatar = $request->avatar;
+    //     $member->full_name = $request->full_name;
+    //     $member->subscriber_email = $request->subscriber_email;
+    //     $member->phone_number = $request->phone_number;
+    //     $member->address = $request->address;
+    //     $member->is_open = $request->is_open;
+    //     $member->save();
+    //     return response()->json(['message' => 'Member cập nhật thành công', 'member' => $member]);
+    // }
 
 
     public function dangKy(RegisterMemberRequest $request)
@@ -170,12 +171,8 @@ class MemberController extends Controller
         ]);
     }
 
-    public function changePassword(Request $request)
+    public function changePassword(ChangePasswordRequest $request)
     {
-        $request->validate([
-            'current_password' => 'required',
-            'new_password' => 'required|min:6|confirmed',
-        ]);
         $member = Auth::member();
         if (!Hash::check($request->current_password, $member->password)) {
             return response()->json(['message' => 'Mật khẩu hiện tại không đúng.']);
