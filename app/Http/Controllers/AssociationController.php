@@ -33,7 +33,7 @@ class AssociationController extends Controller
 
         return response()->json([
             'status'    =>  true,
-            'message'   =>  'Đã tạo mới thành viên thành công!'
+            'message'   =>  'Đã tạo mới hội viên thành công!'
         ]);
     }
     public function destroy($id)
@@ -42,7 +42,7 @@ class AssociationController extends Controller
 
         return response()->json([
             'status'    =>  true,
-            'message'   =>  'Đã xoá thành viên thành công!'
+            'message'   =>  'Đã xoá hội viên thành công!'
         ]);
     }
 

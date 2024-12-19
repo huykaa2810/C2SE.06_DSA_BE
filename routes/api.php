@@ -72,7 +72,7 @@ Route::get('/posts/category/{category_id}', [PostController::class, 'getPostsByC
 
 Route::get('/Association/data', [AssociationController::class, 'getData']);
 Route::post('/Association/create', [AssociationController::class, 'store']);
-Route::delete('/Association/delete{id}', [AssociationController::class, 'destroy']);
+Route::delete('/Association/delete/{id}', [AssociationController::class, 'destroy']);
 
 Route::put('/associations/update', [AssociationController::class, 'update']);
 Route::get('/Associations/avatars', [AssociationController::class, 'getAllAvatars']);
