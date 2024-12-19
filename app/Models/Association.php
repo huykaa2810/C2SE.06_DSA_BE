@@ -11,7 +11,7 @@ class Association extends Authenticatable
 {
     use HasFactory, HasApiTokens, Notifiable;
 
-
+    protected $table = 'associations';
     protected $fillable = [
 
         'user_name',

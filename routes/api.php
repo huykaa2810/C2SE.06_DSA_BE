@@ -47,6 +47,8 @@ Route::post('/Events/create', [EventsController::class, 'store']);
 Route::delete('/Events/delete{id}', [EventsController::class, 'destroy']);
 Route::put('/Events/update', [EventsController::class, 'update']);
 Route::get('/events/organizer/{organizer_id}', [EventsController::class, 'getEventsByOrganizer']);
+Route::get('/events/latest', [EventsController::class, 'getLatestEvents']);
+Route::get('/events/Happening', [EventsController::class, 'getEventsIsHappening']);
 
 
 
@@ -73,11 +75,15 @@ Route::get('/posts/category/{category_id}', [PostController::class, 'getPostsByC
 Route::get('/Association/data', [AssociationController::class, 'getData']);
 Route::post('/Association/create', [AssociationController::class, 'store']);
 Route::delete('/Association/delete/{id}', [AssociationController::class, 'destroy']);
-
 Route::put('/associations/update', [AssociationController::class, 'update']);
 Route::get('/Associations/avatars', [AssociationController::class, 'getAllAvatars']);
 Route::get('/Associations/search', [AssociationController::class, 'search']);
-Route::get('/Associations/{id}', [AssociationController::class, 'getAssociationById']);
+Route::get('/Associations/{id}', [AssociationController::class,'getAssociationById']);
+Route::get('/Associations-total', [AssociationController::class,'getTotalAssociations']);
+Route::put('/Associations/update/{id}', [AssociationController::class,'updateAssociation']);
+Route::post('/Associations/doi-mat-khau', [AssociationController::class, 'changePassword']);
+
+
 
 Route::get('/Contact/data', [ContactController::class, 'getData']);
 Route::post('/Contact/create', [ContactController::class, 'store']);
@@ -86,10 +92,9 @@ Route::put('/Contact/update', [ContactController::class, 'update']);
 
 Route::get('/member/data', [MemberController::class, 'getData']);
 Route::post('/member/create', [MemberController::class, 'store']);
-
 Route::put('/member/update', [MemberController::class, 'update']);
-Route::put('/members/{id}', [MemberController::class, 'update']);
 Route::post('/member/doi-mat-khau', [MemberController::class, 'changePassword']);
+Route::put('/member/update/{id}', [MemberController::class, 'updateMember']);
 
 
 

@@ -53,4 +53,21 @@ class EventsController extends Controller
         }
         return response()->json($events);
     }
+
+
+    public function getLatestEvents()
+    {
+        $latestEvents = Events::orderBy('event_date', 'desc')->take(3)->get();
+
+        return response()->json($latestEvents);
+    }
+
+    public function getEventsIsHappening()
+    {
+        $ongoingEvents = Events::where('event_date', '<=', now())
+            ->where('end_date', '>=', now())
+            ->get();
+
+        return response()->json($ongoingEvents);
+    }
 }

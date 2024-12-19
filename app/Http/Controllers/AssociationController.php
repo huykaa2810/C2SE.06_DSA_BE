@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AssociationRequest;
+use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\UpdateAssociationRequest;
 use App\Models\Association;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AssociationController extends Controller
 {
@@ -46,32 +49,28 @@ class AssociationController extends Controller
         ]);
     }
 
+    public function updateAssociation(UpdateAssociationRequest $request, $id)
+    {
+        $association = Association::findOrFail($id);
+        $association->user_name = $request->user_name;
+        if ($request->filled('password')) {
+            $association->password = bcrypt($request->password);
+        }
+        $association->company_email = $request->company_email;
+        $association->registrant_name = $request->registrant_name;
+        $association->subscriber_email = $request->subscriber_email;
+        $association->registered_phone_number = $request->registered_phone_number;
+        $association->address = $request->address;
+        $association->website = $request->website;
+        $association->avatar = $request->avatar;
+        $association->is_active = $request->is_active;
+        $association->is_open = $request->is_open;
+        $association->company_name = $request->company_name;
+        $association->is_master = $request->is_master;
+        $association->save();
+        return response()->json(['message' => 'Cập nhật hiệp hội thành công', 'association' => $association]);
+    }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $association = Association::find($id);
-    //     if (!$association) {
-    //         return response()->json(['message' => 'không tìm thấy Association']);
-    //     }
-    //     $association->user_name = $request->user_name;
-    //     if ($request->password) {
-    //         $association->password = bcrypt($request->password);
-    //     }
-    //     $association->company_email = $request->company_email;
-    //     $association->registrant_name = $request->registrant_name;
-    //     $association->subscriber_email = $request->subscriber_email;
-    //     $association->phone_number = $request->phone_number;
-    //     $association->registered_phone_number = $request->registered_phone_number;
-    //     $association->address = $request->address;
-    //     $association->website = $request->website;
-    //     $association->avatar = $request->avatar;
-    //     $association->is_active = $request->is_active;
-    //     $association->is_open = $request->is_open;
-    //     $association->company_name = $request->company_name;
-    //     $association->is_master = $request->is_master;
-    //     $association->save();
-    //     return response()->json(['message' => 'Association cập nhật thành công', 'association' => $association]);
-    // }
     public function update(Request $request)
     {
         $data   = $request->all();
@@ -141,9 +140,42 @@ class AssociationController extends Controller
         $association = Association::find($id);
 
         if (!$association) {
-            return response()->json(['message' => 'Association not found'], 404);
+            return response()->json(['message' => 'Association không tồn tại']);
         }
         $associationData = $association->makeHidden(['password']);
         return response()->json($associationData);
+    }
+
+
+    public function getTotalAssociations()
+    {
+        $totalAssociations = Association::count();
+        return response()->json([
+            'status' => true,
+            'total_associations' => $totalAssociations,
+            'message' => 'Tổng số lượng hiệp hội'
+        ]);
+    }
+
+
+    public function changePassword(ChangePasswordRequest $request, $id)
+    {
+        $Association = Association::findOrFail($id);
+
+        Log::debug('Current Password (input): ' . $request->current_password);
+        Log::debug('Stored Password: ' . $Association->password);
+
+        if (!Hash::check($request->current_password, $Association->password)) {
+            return response()->json(['message' => 'Mật khẩu hiện tại không đúng.']);
+        }
+
+        if (Hash::check($request->new_password, $Association->password)) {
+            return response()->json(['message' => 'Mật khẩu mới không được giống mật khẩu hiện tại.']);
+        }
+
+        $Association->password = Hash::make($request->new_password);
+        $Association->save();
+
+        return response()->json(['message' => 'Đổi mật khẩu thành công.']);
     }
 }

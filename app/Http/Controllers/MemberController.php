@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\MemberRequest;
 use App\Http\Requests\RegisterMemberRequest;
+use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class MemberController extends Controller
 {
@@ -49,36 +51,6 @@ class MemberController extends Controller
             'message'   =>  'Đã cập nhật thành viên thành công!'
         ]);
     }
-    // public function update(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'user_name' => 'required|string|max:255',
-    //         'password' => 'nullable|string|min:8',
-    //         'avatar' => 'nullable|string',
-    //         'full_name' => 'required|string|max:255',
-    //         'subscriber_email' => 'nullable|email|max:255',
-    //         'phone_number' => 'nullable|string|max:20',
-    //         'address' => 'nullable|string|max:255',
-    //         'is_open' => 'required|boolean',
-    //     ]);
-    //     $member = Member::find($id);
-
-    //     if (!$member) {
-    //         return response()->json(['message' => 'Member không tồn tại']);
-    //     }
-    //     $member->user_name = $request->user_name;
-    //     if ($request->password) {
-    //         $member->password = bcrypt($request->password);
-    //     }
-    //     $member->avatar = $request->avatar;
-    //     $member->full_name = $request->full_name;
-    //     $member->subscriber_email = $request->subscriber_email;
-    //     $member->phone_number = $request->phone_number;
-    //     $member->address = $request->address;
-    //     $member->is_open = $request->is_open;
-    //     $member->save();
-    //     return response()->json(['message' => 'Member cập nhật thành công', 'member' => $member]);
-    // }
 
 
     public function dangKy(RegisterMemberRequest $request)
@@ -171,15 +143,52 @@ class MemberController extends Controller
         ]);
     }
 
-    public function changePassword(ChangePasswordRequest $request)
+    // public function changePassword(ChangePasswordRequest $request)
+    // {
+    //     // $member = Auth::member();
+    //     // if (!Hash::check($request->current_password, $member->password)) {
+    //     //     return response()->json(['message' => 'Mật khẩu hiện tại không đúng.']);
+    //     // }
+    //     // $member->password = Hash::make($request->new_password);
+    //     // $member->save();
+
+    //     // return response()->json(['message' => 'Đổi mật khẩu thành công.']);
+    // }
+    public function changePassword(ChangePasswordRequest $request, $id)
     {
-        $member = Auth::member();
+        $member = Member::findOrFail($id);
+
+        Log::debug('Current Password (input): ' . $request->current_password);
+        Log::debug('Stored Password: ' . $member->password);
+
         if (!Hash::check($request->current_password, $member->password)) {
             return response()->json(['message' => 'Mật khẩu hiện tại không đúng.']);
         }
+
+        if (Hash::check($request->new_password, $member->password)) {
+            return response()->json(['message' => 'Mật khẩu mới không được giống mật khẩu hiện tại.']);
+        }
+
         $member->password = Hash::make($request->new_password);
         $member->save();
 
         return response()->json(['message' => 'Đổi mật khẩu thành công.']);
+    }
+
+    public function updateMember(UpdateMemberRequest $request, $id)
+    {
+        $member = Member::findOrFail($id);
+        $member->user_name = $request->user_name;
+        if ($request->filled('password')) {
+            $member->password = bcrypt($request->password);
+        }
+        $member->avatar = $request->avatar;
+        $member->full_name = $request->full_name;
+        $member->subscriber_email = $request->subscriber_email;
+        $member->phone_number = $request->phone_number;
+        $member->address = $request->address;
+        $member->is_open = $request->is_open;
+        $member->save();
+        return response()->json(['message' => 'Cập nhật thành công', 'member' => $member]);
     }
 }
