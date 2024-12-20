@@ -11,7 +11,6 @@ class EventsController extends Controller
     public function getData()
     {
         $data   =   Events::with(['association:id,registrant_name'])->get();
-        //$data   =   Events::all();
         return response()->json([
             'events'  =>  $data
         ]);

@@ -21,7 +21,6 @@ class PostController extends Controller
     }
     public function getPostById($id)
     {
-        // Lấy bài viết theo id và thông tin member
         $post = Post::with('association:id,registrant_name', 'category:id,category_name')->findOrFail($id);
 
         return response()->json([

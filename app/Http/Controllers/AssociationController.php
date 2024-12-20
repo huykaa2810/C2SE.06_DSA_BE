@@ -15,12 +15,6 @@ use Illuminate\Support\Facades\Log;
 
 class AssociationController extends Controller
 {
-    // $data   =   Member::all();
-
-    //     return response()->json([
-    //         'members'  =>  $data
-    //     ]);
-    // }
     public function getData()
     {
         $data   =   Association::all();

@@ -142,18 +142,6 @@ class MemberController extends Controller
             'message' => 'Thông tin của bạn đã được cập nhật thành công!'
         ]);
     }
-
-    // public function changePassword(ChangePasswordRequest $request)
-    // {
-    //     // $member = Auth::member();
-    //     // if (!Hash::check($request->current_password, $member->password)) {
-    //     //     return response()->json(['message' => 'Mật khẩu hiện tại không đúng.']);
-    //     // }
-    //     // $member->password = Hash::make($request->new_password);
-    //     // $member->save();
-
-    //     // return response()->json(['message' => 'Đổi mật khẩu thành công.']);
-    // }
     public function changePassword(ChangePasswordRequest $request, $id)
     {
         $member = Member::findOrFail($id);
