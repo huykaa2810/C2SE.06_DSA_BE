@@ -146,4 +146,14 @@ class PostController extends Controller
 
         return response()->json($latestPosts);
     }
+
+    public function xemBaiViet($id)
+    {
+        $post = Post::find($id);
+        if (!$post) {
+            return response()->json(['message' => 'Bài viết không tồn tại']);
+        }
+        $post->increment('view');
+        return response()->json($post);
+    }
 }

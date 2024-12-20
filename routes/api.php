@@ -65,7 +65,7 @@ Route::get('/posts/latest', [PostController::class, 'latest']);
 Route::get('/posts/search', [PostController::class, 'search']);
 Route::get('/posts/recommend', [PostController::class, 'recommend']);
 Route::get('/posts/top', [PostController::class, 'getTopPosts']);
-Route::get('/posts/{id}/view', [PostController::class, 'xemBaiViet']);
+Route::get('/posts/view/{id}', [PostController::class, 'xemBaiViet']);
 Route::get('/posts/latest/{category_id}', [PostController::class, 'getLatestPostsByCategory']);
 Route::get('/posts/member/{member_id}', [PostController::class, 'getPostsByMember']);
 
