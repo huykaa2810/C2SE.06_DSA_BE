@@ -7,32 +7,43 @@ use Illuminate\Http\Request;
 
 class TrackingController extends Controller
 {
-    public function vitsitcount()
+    public function totalVisitCount(Request $request)
     {
-        $tracking = Tracking::first();
-        if (!$tracking) {
-            $tracking = Tracking::create(['visit_count' => 0]);
-        }
-        $tracking->increment('visit_count');
+        $totalVisits = Tracking::sum('visit_count');
+
         return response()->json([
-            'status' => true,
-            'message' => 'Số lượt truy cập đã được cập nhật.',
-            'visit_count' => $tracking->visit_count + 1
+            'total_visit_count' => $totalVisits,
         ]);
     }
-    public function vitsitcountBytoday(Request $request)
+    public function vitsitcountBydate(Request $request)
     {
-        $date = date('Y-m-d');
+        $date = $request->input('date', date('Y-m-d'));
         $tracking = Tracking::firstOrCreate(
             ['date' => $date],
-            ['visit_count' => 0]
+            ['visit_count' => 1]
         );
-        $tracking->visit_count++;
-        $tracking->save();
+        if (!$tracking->wasRecentlyCreated) {
+            $tracking->visit_count++;
+            $tracking->save();
+        }
         return response()->json([
-            'message' => 'Lượt truy cập đã được tăng.',
             'date' => $tracking->date,
             'visit_count' => $tracking->visit_count,
         ]);
+    }
+
+    public function latestTracking(Request $request)
+    {
+        $latestTracking = Tracking::orderBy('date', 'desc')->first();
+        if ($latestTracking) {
+            return response()->json([
+                'date' => $latestTracking->date,
+                'visit_count' => $latestTracking->visit_count,
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Không có bản ghi nào.',
+            ]);
+        }
     }
 }

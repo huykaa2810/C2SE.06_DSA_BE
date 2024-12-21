@@ -89,6 +89,7 @@ Route::get('/Contact/data', [ContactController::class, 'getData']);
 Route::post('/Contact/create', [ContactController::class, 'store']);
 Route::delete('/Contact/delete{id}', [ContactController::class, 'destroy']);
 Route::put('/Contact/update', [ContactController::class, 'update']);
+Route::get('/Contacts/totaltoday', [ContactController::class, 'getTotalContactsToday']);
 
 Route::get('/member/data', [MemberController::class, 'getData']);
 Route::post('/member/create', [MemberController::class, 'store']);
@@ -104,8 +105,9 @@ Route::post('/association/dang-nhap', [AssociationController::class, 'dangNhap']
 Route::post('/member/dang-nhap', [MemberController::class, 'dangNhap']);
 
 
-Route::get('/tracking', [TrackingController::class, 'vitsitcount']);
-Route::get('/tracking/today', [TrackingController::class, 'vitsitcountBytoday']);
+Route::get('/tracking', [TrackingController::class, 'totalVisitCount']);
+Route::get('/tracking/date', [TrackingController::class, 'vitsitcountBydate']);
+Route::get('/tracking/latest', [TrackingController::class, 'latestTracking']);
 
 Route::middleware('auth:sanctum')->get('/kiem-tra-token-member', [MemberController::class, 'kiemTraToken']);
 Route::middleware('auth:sanctum')->get('/kiem-tra-token-association', [AssociationController::class, 'kiemTraToken']);

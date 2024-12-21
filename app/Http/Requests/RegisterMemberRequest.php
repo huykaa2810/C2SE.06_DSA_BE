@@ -26,7 +26,7 @@ class RegisterMemberRequest extends FormRequest
             'password' => 'required|string|min:8|confirmed',
             'full_name' => 'required|string',
             'subscriber_email' => 'nullable|email',
-            'phone_number' => 'nullable|string',
+            'phone_number' => 'nullable|numberic',
             'address' => 'nullable|string',
             'avatar' => 'nullable|string',
             'is_open' => 'boolean',
@@ -51,7 +51,7 @@ class RegisterMemberRequest extends FormRequest
 
             'subscriber_email.email' => 'Email không hợp lệ.',
 
-            'phone_number.string' => 'Số điện thoại phải là một chuỗi.',
+            'phone_number.numberic' => 'Số điện thoại phải là số.',
 
             'address.string' => 'Địa chỉ phải là một chuỗi.',
 
