@@ -83,8 +83,6 @@ Route::get('/Associations-total', [AssociationController::class,'getTotalAssocia
 Route::put('/Associations/update/{id}', [AssociationController::class,'updateAssociation']);
 Route::post('/Associations/doi-mat-khau', [AssociationController::class, 'changePassword']);
 
-
-
 Route::get('/Contact/data', [ContactController::class, 'getData']);
 Route::post('/Contact/create', [ContactController::class, 'store']);
 Route::delete('/Contact/delete{id}', [ContactController::class, 'destroy']);
@@ -97,13 +95,9 @@ Route::put('/member/update', [MemberController::class, 'update']);
 Route::post('/member/doi-mat-khau', [MemberController::class, 'changePassword']);
 Route::put('/member/update/{id}', [MemberController::class, 'updateMember']);
 
-
-
-
 Route::post('/dang-ky', [MemberController::class, 'dangKy']);
 Route::post('/association/dang-nhap', [AssociationController::class, 'dangNhap']);
 Route::post('/member/dang-nhap', [MemberController::class, 'dangNhap']);
-
 
 Route::get('/tracking', [TrackingController::class, 'totalVisitCount']);
 Route::get('/tracking/date', [TrackingController::class, 'vitsitcountBydate']);
@@ -111,8 +105,5 @@ Route::get('/tracking/latest', [TrackingController::class, 'latestTracking']);
 
 Route::middleware('auth:sanctum')->get('/kiem-tra-token-member', [MemberController::class, 'kiemTraToken']);
 Route::middleware('auth:sanctum')->get('/kiem-tra-token-association', [AssociationController::class, 'kiemTraToken']);
-
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::put('/user/update', [MemberController::class, 'updateCurrentUser']);
+Route::middleware('auth:sanctum')->group(function () {Route::put('/user/update', [MemberController::class, 'updateCurrentUser']);
 });

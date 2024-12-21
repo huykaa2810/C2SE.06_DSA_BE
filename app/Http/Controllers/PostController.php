@@ -21,7 +21,10 @@ class PostController extends Controller
     }
     public function getPostById($id)
     {
-        $post = Post::with('association:id,registrant_name', 'category:id,category_name')->findOrFail($id);
+        $post = Post::with('association:id,registrant_name', 'category:id,category_name')
+            ->where('id', $id)
+            ->where('is_open', 1)
+            ->findOrFail($id);
 
         return response()->json([
             'post' => $post

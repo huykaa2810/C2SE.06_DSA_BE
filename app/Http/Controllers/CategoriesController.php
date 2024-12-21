@@ -18,33 +18,26 @@ class CategoriesController extends Controller
         ]);
     }
 
-    //trả về danh mục có id tương ứng
     public function getDataById($id)
     {
         $data = Categories::find($id);
-
         if (!$data) {
-            return response()->json(['message' => 'Category not found'], 404);
+            return response()->json(['message' => 'Category không tồn tại!']);
         }
-
         return response()->json([
             'category' => $data
         ]);
     }
 
 
-    // lấy danh mục con bằng ID của danh mục cha
     public function getChildCategories($parentId)
     {
-        // Lấy tất cả danh mục con dựa trên ID của danh mục cha
         $childCategories = Categories::where('parent_category_id', $parentId)
-            ->select('id', 'name') // Giả sử tên trường là 'name'
+            ->select('id', 'name')
             ->get();
-
         if ($childCategories->isEmpty()) {
-            return response()->json(['message' => 'Không tìm thấy danh mục con'], 404);
+            return response()->json(['message' => 'Không tìm thấy danh mục con']);
         }
-
         return response()->json([
             'parent_id' => $parentId,
             'child_categories' => $childCategories
@@ -63,6 +56,7 @@ class CategoriesController extends Controller
             'message'   =>  'Đã tạo mới thể loại thành công!'
         ]);
     }
+
     public function destroy($id)
     {
         Categories::find($id)->delete();
@@ -84,10 +78,12 @@ class CategoriesController extends Controller
 
     public function getPostsByCategory($id)
     {
-        $category = Categories::with('posts')->find($id);
+        $category = Categories::with(['posts' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->find($id);
 
         if ($category) {
-            return response()->json($category->posts, 200);
+            return response()->json($category->posts);
         } else {
             return response()->json([
                 '

@@ -28,7 +28,7 @@ class ConfigBannersController extends Controller
     }
 
     public function getTopBanners()
-    {
+    {   
         $banners = ConfigBanners::where('is_open', 1)
             ->whereIn('priority', [1, 2, 3])
             ->orderBy('priority', 'asc')
